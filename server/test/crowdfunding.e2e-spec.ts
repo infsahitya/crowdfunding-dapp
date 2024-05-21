@@ -1,6 +1,7 @@
 import hre from "hardhat";
 import { expect } from "chai";
 import { ContractFactory } from "ethers";
+import { IDGenerator } from "../typechain-types/IDGenerator";
 import { Crowdfunding } from "../typechain-types/Crowdfunding";
 
 const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
@@ -15,15 +16,15 @@ const dummyCampaign = {
 } as const;
 
 describe("Crowdfunding Platform", () => {
-  let app: Crowdfunding, idGenerator: any;
   let deployer: any, user: any;
+  let app: Crowdfunding, idGenerator: IDGenerator;
 
   beforeEach(async () => {
     [deployer, user] = await hre.ethers.getSigners();
 
     const IDGenerator: ContractFactory =
       await hre.ethers.getContractFactory("IDGenerator");
-    idGenerator = await IDGenerator.connect(deployer).deploy();
+    idGenerator = (await IDGenerator.connect(deployer).deploy()) as IDGenerator;
 
     await idGenerator.waitForDeployment();
 
