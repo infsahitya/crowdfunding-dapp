@@ -2,19 +2,19 @@
 import { ethers } from "hardhat";
 import { expect } from "chai";
 
-const tokens = (n) => ethers.utils.parseUnit(n.toString(), "ether");
+const tokens = (n: number) => ethers.utils.parseUnit(n.toString(), "ether");
 
-const contractName = "Crowdfunding";
+const contractName = "Crowdfunding" as const;
 
 describe("Crowdfunding Platform", () => {
   let app;
-  let deployer;
+  let deployer: string;
 
   beforeEach(async () => {
     [deployer] = await ethers.getSigners();
 
     const Crowdfunding = await ethers.getContractFactory(contractName);
-    app = await Crowdfunding.connect(deployer).deploy(contractName);
+    app = await Crowdfunding.connect(deployer).deploy();
   });
 
   describe("Deployment", () => {
