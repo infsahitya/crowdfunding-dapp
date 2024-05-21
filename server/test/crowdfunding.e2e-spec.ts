@@ -44,8 +44,8 @@ describe("Crowdfunding Platform", () => {
     });
   });
 
-  describe("Campaign", () => {
-    let transaction;
+  describe("Create Campaign", () => {
+    let transaction: any, receipt: any, logs: any[];
 
     beforeEach(async () => {
       transaction = await app
@@ -59,9 +59,27 @@ describe("Crowdfunding Platform", () => {
           dummyCampaign.minimumGoalAmount,
         );
 
-      await transaction.wait();
+      receipt = await transaction.wait();
+      logs = receipt?.logs.filter(
+        (log: any) => log.fragment.name === "CreateCampaign",
+      );
     });
 
-    it("Create", async () => {});
+    it("Event Emitted", async () => {
+      expect(transaction).to.emit(app, "CreateCampaign");
+    });
+
+    it("Match Campaign", async () => {
+      const data = await app.getCampaign(logs[0].args._id);
+
+      expect(data.title).to.be.equal(dummyCampaign.title);
+      expect(data.endDateTime).to.be.equal(dummyCampaign.endDateTime);
+      expect(data.description).to.be.equal(dummyCampaign.description);
+      expect(data.thumbnailURI).to.be.equal(dummyCampaign.thumbnailURI);
+      expect(data.targetGoalAmount).to.be.equal(dummyCampaign.targetGoalAmount);
+      expect(data.minimumGoalAmount).to.be.equal(
+        dummyCampaign.minimumGoalAmount,
+      );
+    });
   });
 });

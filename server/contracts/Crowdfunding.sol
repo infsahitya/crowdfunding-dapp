@@ -25,6 +25,9 @@ contract Crowdfunding {
         idGenerator = IDGenerator(_idGeneratorAddress);
     }
 
+    // TODO: EVENT - event for creating a campaign
+    event CreateCampaign(uint256 _id, string _title, string _endDateTime, string _description, string _thumbnailURI, uint256 _targetGoalAmount, uint256 _minimumGoalAmount);
+
     // TODO: FUNCTION - get deployer address
     function getDeployer() public view returns (address) {
         return deployer;
@@ -51,6 +54,8 @@ contract Crowdfunding {
 
         campaigns[tempCampaignID] = tempCampaign;
         usersCampaigns[msg.sender].push(tempCampaignID);
+
+        emit CreateCampaign(tempCampaignID, _title, _endDateTime, _description, _thumbnailURI, _targetGoalAmount, _minimumGoalAmount);
     }
 
     // TODO: FUNCTION - get campaign details
