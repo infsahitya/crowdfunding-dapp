@@ -3,6 +3,8 @@ pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
+contract 
+
 contract Crowdfunding {
     address private deployer;
 
@@ -15,7 +17,6 @@ contract Crowdfunding {
         uint256 minimumGoalAmount;
     }
 
-    uint256 private totalCampaigns;
     mapping(uint256 => Campaign) private campaigns;
     mapping(address => uint256[]) private usersCampaigns;
 
@@ -26,6 +27,26 @@ contract Crowdfunding {
     // TODO: FUNCTION - get deployer address
     function getDeployer() public view returns (address) {
         return deployer;
+    }
+
+    function createCampaign(
+        string memory _title,
+        string memory _endDateTime,
+        string memory _description,
+        string _thumbnailURI;
+        uint256 _targetGoalAmount;
+        uint256 _minimumGoalAmount;
+    ) public {
+        Campaign memory tempCampaign = Campaign(
+            _title,
+            _endDateTime,
+            _description,
+            _thumbnailURI,
+            _targetGoalAmount,
+            _minimumGoalAmount,
+        );
+
+
     }
 
     // TODO: FUNCTION - get campaign details
