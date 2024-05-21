@@ -15,6 +15,10 @@ const dummyCampaign = {
   thumbnailURI: "http://google.com",
 } as const;
 
+const EventIdentifiers = {
+  createCampaign: "CreateCampaign",
+} as const;
+
 describe("Crowdfunding Platform", () => {
   let deployer: any, user: any;
   let app: Crowdfunding, idGenerator: IDGenerator;
@@ -61,12 +65,12 @@ describe("Crowdfunding Platform", () => {
 
       receipt = await transaction.wait();
       logs = receipt?.logs.filter(
-        (log: any) => log.fragment.name === "CreateCampaign",
+        (log: any) => log.fragment.name === EventIdentifiers.createCampaign,
       );
     });
 
     it("Event Emitted", async () => {
-      expect(transaction).to.emit(app, "CreateCampaign");
+      expect(transaction).to.emit(app, EventIdentifiers.createCampaign);
     });
 
     it("Match Campaign", async () => {
