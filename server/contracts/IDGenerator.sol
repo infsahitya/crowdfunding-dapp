@@ -1,19 +1,20 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
-import "@openzeppelin/contracts/utils/Counters.sol";
-
 contract IDGenerator {
-    using Counters for Counters.Counter;
-    Counters.Counter private _counter;
+    uint256 private currentID;
 
-    function generateId() public returns (uint256) {
-        _counter.increment();
+    constructor () {
+        currentID = 0;
+    }
+
+    function generateID() public returns (uint256) {
+        currentID += 1;
         return
             uint256(
                 keccak256(
                     abi.encodePacked(
-                        _counter.current(),
+                        currentID,
                         block.timestamp,
                         block.difficulty,
                         msg.sender
@@ -22,7 +23,7 @@ contract IDGenerator {
             );
     }
 
-    function getCurrentId() public view returns (uint256) {
-        return _counter.current();
+    function getCurrentID() public view returns (uint256) {
+        return currentID;
     }
 }

@@ -2,7 +2,6 @@
 pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
-
 import "./IDGenerator.sol";
 
 contract Crowdfunding {
@@ -35,9 +34,9 @@ contract Crowdfunding {
         string memory _title,
         string memory _endDateTime,
         string memory _description,
-        string _thumbnailURI;
-        uint256 _targetGoalAmount;
-        uint256 _minimumGoalAmount;
+        string memory _thumbnailURI,
+        uint256 _targetGoalAmount,
+        uint256 _minimumGoalAmount
     ) public {
         Campaign memory tempCampaign = Campaign(
             _title,
@@ -45,8 +44,13 @@ contract Crowdfunding {
             _description,
             _thumbnailURI,
             _targetGoalAmount,
-            _minimumGoalAmount,
+            _minimumGoalAmount
         );
+
+        uint256 tempCampaignID = idGenerator.generateID();
+
+        campaigns[tempCampaignID] = tempCampaign;
+        usersCampaigns[msg.sender].push(tempCampaignID);
     }
 
     // TODO: FUNCTION - get campaign details
@@ -61,7 +65,7 @@ contract Crowdfunding {
         );
 
         for (uint256 i = 0; i < userCampaignIDs.length; i++) {
-            userCampaigns.push(campaigns[userCampaignIDs[i]]);
+            userCampaigns[i] = campaigns[userCampaignIDs[i]];
         }
 
         return userCampaigns;
