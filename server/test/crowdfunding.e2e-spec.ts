@@ -43,7 +43,7 @@ describe("Crowdfunding Platform", () => {
 
   describe("Deployment", () => {
     it("Match Deployer", async () => {
-      const data: string = await app.getDeployer();
+      const data = await app.getDeployer();
       expect(data).to.be.equal(deployer);
     });
   });
