@@ -1,25 +1,26 @@
-// @ts-ignore
-import { ethers } from "hardhat";
+import hre from "hardhat";
 import { expect } from "chai";
+import { ContractFactory } from "ethers";
 
-const tokens = (n: number) => ethers.utils.parseUnit(n.toString(), "ether");
+const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
 
 const contractName = "Crowdfunding" as const;
 
 describe("Crowdfunding Platform", () => {
-  let app;
-  let deployer: string;
+  let app: any;
+  let deployer: any;
 
   beforeEach(async () => {
-    [deployer] = await ethers.getSigners();
+    [deployer] = await hre.ethers.getSigners();
 
-    const Crowdfunding = await ethers.getContractFactory(contractName);
+    const Crowdfunding: ContractFactory =
+      await hre.ethers.getContractFactory(contractName);
     app = await Crowdfunding.connect(deployer).deploy();
   });
 
   describe("Deployment", () => {
     it("Match Deployer", async () => {
-      const data = await app.getDeployer();
+      const data: string = await app.getDeployer();
       expect(data).to.be.equal(deployer);
     });
   });
