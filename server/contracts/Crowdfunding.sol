@@ -3,10 +3,11 @@ pragma solidity ^0.8.9;
 
 import "hardhat/console.sol";
 
-contract 
+import "./IDGenerator.sol";
 
 contract Crowdfunding {
     address private deployer;
+    IDGenerator private idGenerator;
 
     struct Campaign {
         string title;
@@ -20,8 +21,9 @@ contract Crowdfunding {
     mapping(uint256 => Campaign) private campaigns;
     mapping(address => uint256[]) private usersCampaigns;
 
-    constructor() {
+    constructor(address _idGeneratorAddress) {
         deployer = msg.sender;
+        idGenerator = IDGenerator(_idGeneratorAddress);
     }
 
     // TODO: FUNCTION - get deployer address
@@ -45,8 +47,6 @@ contract Crowdfunding {
             _targetGoalAmount,
             _minimumGoalAmount,
         );
-
-
     }
 
     // TODO: FUNCTION - get campaign details
