@@ -20,11 +20,11 @@ const EventIdentifiers = {
 } as const;
 
 describe("Crowdfunding Platform", () => {
-  let deployer: any, user: any;
+  let deployer: any;
   let app: Crowdfunding, idGenerator: IDGenerator;
 
   beforeEach(async () => {
-    [deployer, user] = await hre.ethers.getSigners();
+    [deployer] = await hre.ethers.getSigners();
 
     const IDGenerator: ContractFactory =
       await hre.ethers.getContractFactory("IDGenerator");
@@ -52,16 +52,14 @@ describe("Crowdfunding Platform", () => {
     let transaction: any, receipt: any, logs: any[];
 
     beforeEach(async () => {
-      transaction = await app
-        .connect(user)
-        .createCampaign(
-          dummyCampaign.title,
-          dummyCampaign.endDateTime,
-          dummyCampaign.description,
-          dummyCampaign.thumbnailURI,
-          dummyCampaign.targetGoalAmount,
-          dummyCampaign.minimumGoalAmount,
-        );
+      transaction = await app.createCampaign(
+        dummyCampaign.title,
+        dummyCampaign.endDateTime,
+        dummyCampaign.description,
+        dummyCampaign.thumbnailURI,
+        dummyCampaign.targetGoalAmount,
+        dummyCampaign.minimumGoalAmount,
+      );
 
       receipt = await transaction.wait();
       logs = receipt?.logs.filter(
@@ -75,7 +73,6 @@ describe("Crowdfunding Platform", () => {
 
     it("Match Campaign", async () => {
       const data = await app.getCampaign(logs[0].args._id);
-
       expect(data.title).to.be.equal(dummyCampaign.title);
       expect(data.endDateTime).to.be.equal(dummyCampaign.endDateTime);
       expect(data.description).to.be.equal(dummyCampaign.description);
@@ -84,6 +81,11 @@ describe("Crowdfunding Platform", () => {
       expect(data.minimumGoalAmount).to.be.equal(
         dummyCampaign.minimumGoalAmount,
       );
+    });
+
+    it("Match User's Campaigns Count", async () => {
+      const data = await app.getUserCampaigns();
+      expect(data.length).to.be.equal(1);
     });
   });
 });

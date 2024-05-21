@@ -33,6 +33,7 @@ contract Crowdfunding {
         return deployer;
     }
 
+    // TODO: FUNCTION - create a new campaign
     function createCampaign(
         string memory _title,
         string memory _endDateTime,
@@ -63,6 +64,7 @@ contract Crowdfunding {
         return campaigns[_id];
     }
 
+    // TODO: FUNCTION - get all campaigns created or owned by a specific user
     function getUserCampaigns() public view returns (Campaign[] memory) {
         uint256[] memory userCampaignIDs = usersCampaigns[msg.sender];
         Campaign[] memory userCampaigns = new Campaign[](
@@ -75,4 +77,15 @@ contract Crowdfunding {
 
         return userCampaigns;
     }
+
+    // TODO: FUNCTION - get public campaigns
+    /*
+     * This function returns all the campaigns which exists on-chain
+     * except the one's created by the users who called the respective
+     * function.
+    */
+    function getPublicCampaigns() public view returns (Campaign[] memory) {
+        
+    }
+    
 }
