@@ -9,6 +9,7 @@ contract Crowdfunding {
     IDGenerator private idGenerator;
 
     struct Campaign {
+        uint256 id;
         string title;
         string endDateTime;
         string description;
@@ -51,7 +52,10 @@ contract Crowdfunding {
         uint256 _targetGoalAmount,
         uint256 _minimumGoalAmount
     ) public {
+        uint256 tempCampaignID = idGenerator.generateID();
+
         Campaign memory tempCampaign = Campaign(
+            tempCampaignID,
             _title,
             _endDateTime,
             _description,
@@ -59,8 +63,6 @@ contract Crowdfunding {
             _targetGoalAmount,
             _minimumGoalAmount
         );
-
-        uint256 tempCampaignID = idGenerator.generateID();
 
         campaigns[tempCampaignID] = tempCampaign;
         usersCampaigns[msg.sender].push(tempCampaignID);
