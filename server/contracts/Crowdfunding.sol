@@ -48,6 +48,16 @@ contract Crowdfunding {
         uint256 _minimumGoalAmount
     );
 
+    // TODO: MODIFIER - check campaign have not reached goal
+    modifier campaignNotReachedGoal(uint256 _id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        require(
+            campaigns[_id].raisedAmount < tempCampaign.targetGoalAmount,
+            "Campaign has already reached it's target goal"
+        );
+        _;
+    }
+
     // TODO: FUNCTION - get a string value returned for the enum state of campaign status
     function getStatusString(
         CampaignStatus _status
@@ -152,4 +162,8 @@ contract Crowdfunding {
 
         return publicCampaigns;
     }
+
+    function contributeToCampaign(
+        uint256 _id
+    ) public payable campaignNotReachedGoal(_id) {}
 }
