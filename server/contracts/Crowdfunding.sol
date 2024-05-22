@@ -43,7 +43,7 @@ contract Crowdfunding {
         string _endDateTime,
         string _description,
         string _thumbnailURI,
-        uint256 raisedAmount,
+        uint256 _raisedAmount,
         uint256 _targetGoalAmount,
         uint256 _minimumGoalAmount
     );
