@@ -18,6 +18,7 @@ contract Crowdfunding {
         uint256 id;
         string title;
         string status;
+        address creator;
         string endDateTime;
         string description;
         string thumbnailURI;
@@ -58,8 +59,19 @@ contract Crowdfunding {
     modifier campaignNotReachedGoal(uint256 _id) {
         Campaign memory tempCampaign = campaigns[_id];
         require(
-            campaigns[_id].raisedAmount < tempCampaign.targetGoalAmount,
+            tempCampaign.raisedAmount < tempCampaign.targetGoalAmount,
             "Campaign has already reached it's target goal"
+        );
+        _;
+    }
+
+    // TODO: MODIFIER - check campaign have reached goal
+    modifier campaignReachedGoal(uint256 _id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        require(
+            tempCampaign.raisedAmount >= tempCampaign.targetGoalAmount ||
+                tempCampaign.raisedAmount >= tempCampaign.minimumGoalAmount,
+            "Campaign has not reached it's target goal yet."
         );
         _;
     }
@@ -71,6 +83,16 @@ contract Crowdfunding {
             msg.value <
                 tempCampaign.targetGoalAmount - tempCampaign.raisedAmount,
             "Donation amount cannot be more than remaining amount."
+        );
+        _;
+    }
+
+    // TODO: MODIFIER - check that the owner of the campaign is the one who is calling the withdraw function
+    modifier checkCampaignOwner(uint256 _id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        require(
+            tempCampaign.creator == msg.sender,
+            "Only owner of the campaign can end the campaign"
         );
         _;
     }
@@ -111,6 +133,7 @@ contract Crowdfunding {
             tempCampaignID,
             _title,
             tempStatus,
+            msg.sender,
             _endDateTime,
             _description,
             _thumbnailURI,
@@ -195,5 +218,19 @@ contract Crowdfunding {
         campaigns[_id] = tempCampaign;
 
         emit ContributeToCampaign(tempCampaign);
+    }
+
+    function endCampaignAndWithdrawFunds(
+        uint256 _id
+    ) public checkCampaignOwner(_id) campaignReachedGoal(_id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        tempCampaign.status = getStatusString(CampaignStatus.Completed);
+
+        (bool sent, ) = tempCampaign.creator.call{value: address(this).balance}(
+            ""
+        );
+        require(sent, "Failed to withdraw and end campaign");
+
+        campaigns[_id] = tempCampaign;
     }
 }
