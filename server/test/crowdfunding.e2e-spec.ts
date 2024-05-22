@@ -20,11 +20,11 @@ const EventIdentifiers = {
 } as const;
 
 describe("Crowdfunding Platform", () => {
-  let deployer: any;
+  let deployer: any, otherUser: any;
   let app: Crowdfunding, idGenerator: IDGenerator;
 
   beforeEach(async () => {
-    [deployer] = await hre.ethers.getSigners();
+    [deployer, otherUser] = await hre.ethers.getSigners();
 
     const IDGenerator: ContractFactory =
       await hre.ethers.getContractFactory("IDGenerator");
@@ -86,6 +86,11 @@ describe("Crowdfunding Platform", () => {
     it("Match User's Campaigns Count", async () => {
       const data = await app.getUserCampaigns();
       expect(data.length).to.be.equal(1);
+    });
+
+    it("Match Public Campaigns Count", async () => {
+      const data = await app.getPublicCampaigns();
+      expect(data.length).to.be.equal(0);
     });
   });
 });
