@@ -17,6 +17,7 @@ contract Crowdfunding {
         uint256 minimumGoalAmount;
     }
 
+    uint256[] private campaignsIDs;
     mapping(uint256 => Campaign) private campaigns;
     mapping(address => uint256[]) private usersCampaigns;
 
@@ -26,7 +27,15 @@ contract Crowdfunding {
     }
 
     // TODO: EVENT - event for creating a campaign
-    event CreateCampaign(uint256 _id, string _title, string _endDateTime, string _description, string _thumbnailURI, uint256 _targetGoalAmount, uint256 _minimumGoalAmount);
+    event CreateCampaign(
+        uint256 _id,
+        string _title,
+        string _endDateTime,
+        string _description,
+        string _thumbnailURI,
+        uint256 _targetGoalAmount,
+        uint256 _minimumGoalAmount
+    );
 
     // TODO: FUNCTION - get deployer address
     function getDeployer() public view returns (address) {
@@ -55,8 +64,17 @@ contract Crowdfunding {
 
         campaigns[tempCampaignID] = tempCampaign;
         usersCampaigns[msg.sender].push(tempCampaignID);
+        campaignsIDs.push(tempCampaignID);
 
-        emit CreateCampaign(tempCampaignID, _title, _endDateTime, _description, _thumbnailURI, _targetGoalAmount, _minimumGoalAmount);
+        emit CreateCampaign(
+            tempCampaignID,
+            _title,
+            _endDateTime,
+            _description,
+            _thumbnailURI,
+            _targetGoalAmount,
+            _minimumGoalAmount
+        );
     }
 
     // TODO: FUNCTION - get campaign details
@@ -83,9 +101,28 @@ contract Crowdfunding {
      * This function returns all the campaigns which exists on-chain
      * except the one's created by the users who called the respective
      * function.
-    */
+     */
     function getPublicCampaigns() public view returns (Campaign[] memory) {
-        
+        uint256[] memory userCampaignsIDs = usersCampaigns[msg.sender];
+        Campaign[] memory publicCampaigns = new Campaign[](
+            campaignsIDs.length - userCampaignsIDs.length
+        );
+
+        for (uint256 i = 0; i < campaignsIDs.length; i++) {
+            bool skipIteration = false;
+
+            for (uint256 j = 0; j < userCampaignsIDs.length; j++) {
+                if (userCampaignsIDs[j] == campaignsIDs[i]) {
+                    skipIteration = true;
+                    break;
+                }
+            }
+
+            if (skipIteration) continue;
+
+            publicCampaigns[i] = campaigns[campaignsIDs[i]];
+        }
+
+        return publicCampaigns;
     }
-    
 }
