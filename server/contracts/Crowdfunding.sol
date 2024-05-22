@@ -17,13 +17,13 @@ contract Crowdfunding {
     struct Campaign {
         uint256 id;
         string title;
+        string status;
         string endDateTime;
         string description;
         string thumbnailURI;
+        uint256 raisedAmount;
         uint256 targetGoalAmount;
         uint256 minimumGoalAmount;
-        string status;
-        uint256 raisedAmount;
     }
 
     uint256[] private campaignsIDs;
@@ -39,13 +39,13 @@ contract Crowdfunding {
     event CreateCampaign(
         uint256 _id,
         string _title,
+        string status,
         string _endDateTime,
         string _description,
         string _thumbnailURI,
+        uint256 raisedAmount,
         uint256 _targetGoalAmount,
-        uint256 _minimumGoalAmount,
-        string status,
-        uint256 raisedAmount
+        uint256 _minimumGoalAmount
     );
 
     // TODO: FUNCTION - get a string value returned for the enum state of campaign status
@@ -78,13 +78,13 @@ contract Crowdfunding {
         Campaign memory tempCampaign = Campaign(
             tempCampaignID,
             _title,
+            tempStatus,
             _endDateTime,
             _description,
             _thumbnailURI,
+            0,
             _targetGoalAmount,
-            _minimumGoalAmount,
-            tempStatus,
-            0
+            _minimumGoalAmount
         );
 
         campaigns[tempCampaignID] = tempCampaign;
@@ -94,13 +94,13 @@ contract Crowdfunding {
         emit CreateCampaign(
             tempCampaignID,
             _title,
+            tempStatus,
             _endDateTime,
             _description,
             _thumbnailURI,
+            0,
             _targetGoalAmount,
-            _minimumGoalAmount,
-            tempStatus,
-            0
+            _minimumGoalAmount
         );
     }
 
