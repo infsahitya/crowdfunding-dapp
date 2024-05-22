@@ -23,6 +23,7 @@ contract Crowdfunding {
         uint256 targetGoalAmount;
         uint256 minimumGoalAmount;
         string status;
+        uint256 raisedAmount;
     }
 
     uint256[] private campaignsIDs;
@@ -43,7 +44,8 @@ contract Crowdfunding {
         string _thumbnailURI,
         uint256 _targetGoalAmount,
         uint256 _minimumGoalAmount,
-        string status
+        string status,
+        uint256 raisedAmount
     );
 
     // TODO: FUNCTION - get a string value returned for the enum state of campaign status
@@ -81,7 +83,8 @@ contract Crowdfunding {
             _thumbnailURI,
             _targetGoalAmount,
             _minimumGoalAmount,
-            tempStatus
+            tempStatus,
+            0
         );
 
         campaigns[tempCampaignID] = tempCampaign;
@@ -96,7 +99,8 @@ contract Crowdfunding {
             _thumbnailURI,
             _targetGoalAmount,
             _minimumGoalAmount,
-            tempStatus
+            tempStatus,
+            0
         );
     }
 
