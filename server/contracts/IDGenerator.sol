@@ -16,7 +16,7 @@ contract IDGenerator {
                     abi.encodePacked(
                         currentID,
                         block.timestamp,
-                        block.difficulty,
+                        blockhash(block.number),
                         msg.sender
                     )
                 )
