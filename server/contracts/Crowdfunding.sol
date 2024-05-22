@@ -51,9 +51,9 @@ contract Crowdfunding {
         CampaignStatus _status
     ) internal pure returns (string memory) {
         if (_status == CampaignStatus.Active) return "Active";
-        if (_status == CampaignStatus.Cancelled) return "Cancelled";
-        if (_status == CampaignStatus.Completed) return "Completed";
-        return "Pending";
+        else if (_status == CampaignStatus.Cancelled) return "Cancelled";
+        else if (_status == CampaignStatus.Completed) return "Completed";
+        else return "Pending";
     }
 
     // TODO: FUNCTION - get deployer address
@@ -71,7 +71,7 @@ contract Crowdfunding {
         uint256 _minimumGoalAmount
     ) public {
         uint256 tempCampaignID = idGenerator.generateID();
-        CampaignStatus tempStatus = CampaignStatus.Active;
+        string memory tempStatus = getStatusString(CampaignStatus.Active);
 
         Campaign memory tempCampaign = Campaign(
             tempCampaignID,
@@ -81,7 +81,7 @@ contract Crowdfunding {
             _thumbnailURI,
             _targetGoalAmount,
             _minimumGoalAmount,
-            getStatusString(tempStatus)
+            tempStatus
         );
 
         campaigns[tempCampaignID] = tempCampaign;
@@ -96,7 +96,7 @@ contract Crowdfunding {
             _thumbnailURI,
             _targetGoalAmount,
             _minimumGoalAmount,
-            getStatusString(tempStatus)
+            tempStatus
         );
     }
 
