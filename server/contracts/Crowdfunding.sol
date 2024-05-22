@@ -30,6 +30,7 @@ contract Crowdfunding {
     uint256[] private campaignsIDs;
     mapping(uint256 => Campaign) private campaigns;
     mapping(address => uint256[]) private usersCampaigns;
+    mapping(uint256 => mapping(address => uint256)) usersDonations;
 
     constructor(address _idGeneratorAddress) {
         deployer = msg.sender;
@@ -45,8 +46,8 @@ contract Crowdfunding {
     // TODO: EVENT - event for ending the campaign and withdrawing funds from it
     event EndCampaign(Campaign _campaign);
 
-    // TODO: MODIFIER - check whether campaign is active or not
-    modifier campaignStatusCheckForContribution(uint256 _id) {
+    // TODO: MODIFIER - check whether campaign status before contribution
+    modifier campaignActiveStatusCheck(uint256 _id) {
         Campaign memory tempCampaign = campaigns[_id];
         require(
             keccak256(abi.encodePacked(tempCampaign.status)) ==
@@ -209,14 +210,10 @@ contract Crowdfunding {
         payable
         campaignNotReachedGoal(_id)
         donationAmountThreshold(_id)
-        campaignStatusCheckForContribution(_id)
+        campaignActiveStatusCheck(_id)
     {
         Campaign memory tempCampaign = campaigns[_id];
         tempCampaign.raisedAmount += msg.value;
-
-        if (tempCampaign.raisedAmount == tempCampaign.targetGoalAmount) {
-            tempCampaign.status = getStatusString(CampaignStatus.Completed);
-        }
 
         campaigns[_id] = tempCampaign;
 
@@ -225,7 +222,12 @@ contract Crowdfunding {
 
     function endCampaignAndWithdrawFunds(
         uint256 _id
-    ) public checkCampaignOwner(_id) campaignReachedGoal(_id) {
+    )
+        public
+        checkCampaignOwner(_id)
+        campaignReachedGoal(_id)
+        campaignActiveStatusCheck(_id)
+    {
         Campaign memory tempCampaign = campaigns[_id];
         tempCampaign.status = getStatusString(CampaignStatus.Completed);
 
@@ -238,4 +240,8 @@ contract Crowdfunding {
 
         emit EndCampaign(tempCampaign);
     }
+
+    function aboutCampaignAndRefundToDonors(
+        uint256 _id
+    ) public checkCampaignOwner(_id) campaignActiveStatusCheck(_id) {}
 }
