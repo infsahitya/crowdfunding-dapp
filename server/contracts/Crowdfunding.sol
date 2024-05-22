@@ -25,6 +25,7 @@ contract Crowdfunding {
         uint256 raisedAmount;
         uint256 targetGoalAmount;
         uint256 minimumGoalAmount;
+        address[] donors;
     }
 
     uint256[] private campaignsIDs;
@@ -45,6 +46,9 @@ contract Crowdfunding {
 
     // TODO: EVENT - event for ending the campaign and withdrawing funds from it
     event EndCampaign(Campaign _campaign);
+
+    // TODO: EVENT - event for aborting the campaign and refunding all the donors
+    event AbortCampaign(Campaign _campaign);
 
     // TODO: MODIFIER - check whether campaign status before contribution
     modifier campaignActiveStatusCheck(uint256 _id) {
@@ -133,6 +137,8 @@ contract Crowdfunding {
         uint256 tempCampaignID = idGenerator.generateID();
         string memory tempStatus = getStatusString(CampaignStatus.Active);
 
+        address[] memory tempDonors;
+
         Campaign memory tempCampaign = Campaign(
             tempCampaignID,
             _title,
@@ -143,7 +149,8 @@ contract Crowdfunding {
             _thumbnailURI,
             0,
             _targetGoalAmount,
-            _minimumGoalAmount
+            _minimumGoalAmount,
+            tempDonors
         );
 
         campaigns[tempCampaignID] = tempCampaign;
@@ -212,14 +219,18 @@ contract Crowdfunding {
         donationAmountThreshold(_id)
         campaignActiveStatusCheck(_id)
     {
-        Campaign memory tempCampaign = campaigns[_id];
+        Campaign storage tempCampaign = campaigns[_id];
         tempCampaign.raisedAmount += msg.value;
+        tempCampaign.donors.push(msg.sender);
 
         campaigns[_id] = tempCampaign;
+
+        usersDonations[_id][msg.sender] += msg.value;
 
         emit ContributeToCampaign(tempCampaign);
     }
 
+    // TODO: FUNCION - end the campaign and withdraw and transfer all the funds settled in its owners wallet.
     function endCampaignAndWithdrawFunds(
         uint256 _id
     )
@@ -241,7 +252,24 @@ contract Crowdfunding {
         emit EndCampaign(tempCampaign);
     }
 
-    function aboutCampaignAndRefundToDonors(
+    // TODO: FUNCTION - abort a campaign and refund all the donor their respective donated amounts
+    function abortCampaignAndRefundDonors(
         uint256 _id
-    ) public checkCampaignOwner(_id) campaignActiveStatusCheck(_id) {}
+    ) public checkCampaignOwner(_id) campaignActiveStatusCheck(_id) {
+        Campaign memory tempCampaign = campaigns[_id];
+
+        for (uint256 i = 0; i < tempCampaign.donors.length; i++) {
+            (bool sent, ) = tempCampaign.donors[i].call{
+                value: usersDonations[_id][tempCampaign.donors[i]]
+            }("");
+            require(sent, "Reverting funds to donors wallet address failed.");
+
+            usersDonations[_id][tempCampaign.donors[i]] = 0;
+        }
+
+        tempCampaign.raisedAmount = 0;
+        campaigns[_id] = tempCampaign;
+
+        emit AbortCampaign(tempCampaign);
+    }
 }
