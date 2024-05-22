@@ -42,6 +42,9 @@ contract Crowdfunding {
     // TODO: EVENT - event for donating money to campaign
     event ContributeToCampaign(Campaign _campaign);
 
+    // TODO: EVENT - event for ending the campaign and withdrawing funds from it
+    event EndCampaign(Campaign _campaign);
+
     // TODO: MODIFIER - check whether campaign is active or not
     modifier campaignStatusCheckForContribution(uint256 _id) {
         Campaign memory tempCampaign = campaigns[_id];
@@ -80,7 +83,7 @@ contract Crowdfunding {
     modifier donationAmountThreshold(uint256 _id) {
         Campaign memory tempCampaign = campaigns[_id];
         require(
-            msg.value <
+            msg.value <=
                 tempCampaign.targetGoalAmount - tempCampaign.raisedAmount,
             "Donation amount cannot be more than remaining amount."
         );
@@ -229,8 +232,10 @@ contract Crowdfunding {
         (bool sent, ) = tempCampaign.creator.call{value: address(this).balance}(
             ""
         );
-        require(sent, "Failed to withdraw and end campaign");
+        require(sent, "Failed to withdraw funds and end campaign");
 
         campaigns[_id] = tempCampaign;
+
+        emit EndCampaign(tempCampaign);
     }
 }

@@ -9,8 +9,8 @@ const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
 const dummyCampaign = {
   endDateTime: "0000",
   title: "Example Campaign",
-  targetGoalAmount: tokens(2222),
-  minimumGoalAmount: tokens(1111),
+  targetGoalAmount: tokens(2),
+  minimumGoalAmount: tokens(1.5),
   description: "Some description",
   thumbnailURI: "http://google.com",
 } as const;
@@ -97,7 +97,7 @@ describe("Crowdfunding Platform", () => {
 
   describe("Contribute Money To Campaign", () => {
     let transaction: any, receipt: any, logs: any[];
-    const donationAmount = tokens(20);
+    const donationAmount = tokens(2);
 
     beforeEach(async () => {
       transaction = await app
@@ -132,6 +132,46 @@ describe("Crowdfunding Platform", () => {
     it("Check Contract Holdings", async () => {
       const data = await hre.ethers.provider.getBalance(app.getAddress());
       expect(data).to.be.equal(donationAmount);
+    });
+  });
+
+  describe("End Campaign and Withdraw Funds", () => {
+    let transaction: any, receipt: any, logs: any[];
+    const donationAmount = tokens(2);
+
+    beforeEach(async () => {
+      transaction = await app
+        .connect(user1)
+        .createCampaign(
+          dummyCampaign.title,
+          dummyCampaign.endDateTime,
+          dummyCampaign.description,
+          dummyCampaign.thumbnailURI,
+          dummyCampaign.targetGoalAmount,
+          dummyCampaign.minimumGoalAmount,
+        );
+
+      receipt = await transaction.wait();
+      logs = receipt?.logs.filter(
+        (log: any) => log.fragment.name === EventIdentifiers.createCampaign,
+      );
+
+      transaction = await app
+        .connect(user2)
+        .contributeToCampaign(logs[0].args._campaign.id, {
+          value: donationAmount,
+        });
+      await transaction.wait();
+
+      transaction = await app
+        .connect(user1)
+        .endCampaignAndWithdrawFunds(logs[0].args._campaign.id);
+      await transaction.wait();
+    });
+
+    it("Check campaign status", async () => {
+      const data = await app.getCampaign(logs[0].args._campaign.id);
+      expect(data.status).to.be.equal("Completed");
     });
   });
 });
