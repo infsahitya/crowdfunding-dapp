@@ -41,6 +41,19 @@ contract Crowdfunding {
     // TODO: EVENT - event for donating money to campaign
     event ContributeToCampaign(Campaign _campaign);
 
+    // TODO: MODIFIER - check whether campaign is active or not
+    modifier campaignStatusCheckForContribution(uint256 _id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        require(
+            keccak256(abi.encodePacked(tempCampaign.status)) ==
+                keccak256(
+                    abi.encodePacked(getStatusString(CampaignStatus.Active))
+                ),
+            "A campaign should be active to accept donations,"
+        );
+        _;
+    }
+
     // TODO: MODIFIER - check campaign have not reached goal
     modifier campaignNotReachedGoal(uint256 _id) {
         Campaign memory tempCampaign = campaigns[_id];
@@ -165,7 +178,13 @@ contract Crowdfunding {
     // TODO: FUNCTION - contributing money to a campaign
     function contributeToCampaign(
         uint256 _id
-    ) public payable campaignNotReachedGoal(_id) donationAmountThreshold(_id) {
+    )
+        public
+        payable
+        campaignNotReachedGoal(_id)
+        donationAmountThreshold(_id)
+        campaignStatusCheckForContribution(_id)
+    {
         Campaign memory tempCampaign = campaigns[_id];
         tempCampaign.raisedAmount += msg.value;
 
