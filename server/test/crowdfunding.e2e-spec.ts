@@ -72,7 +72,7 @@ describe("Crowdfunding Platform", () => {
     });
 
     it("Match Campaign", async () => {
-      const data = await app.getCampaign(logs[0].args._id);
+      const data = await app.getCampaign(logs[0].args._campaign.id);
       expect(data.title).to.be.equal(dummyCampaign.title);
       expect(data.endDateTime).to.be.equal(dummyCampaign.endDateTime);
       expect(data.description).to.be.equal(dummyCampaign.description);

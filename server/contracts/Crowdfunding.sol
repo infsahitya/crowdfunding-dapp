@@ -36,17 +36,10 @@ contract Crowdfunding {
     }
 
     // TODO: EVENT - event for creating a campaign
-    event CreateCampaign(
-        uint256 _id,
-        string _title,
-        string status,
-        string _endDateTime,
-        string _description,
-        string _thumbnailURI,
-        uint256 _raisedAmount,
-        uint256 _targetGoalAmount,
-        uint256 _minimumGoalAmount
-    );
+    event CreateCampaign(Campaign _campaign);
+
+    // TODO: EVENT - event for donating money to campaign
+    event ContributeToCampaign(Campaign _campaign);
 
     // TODO: MODIFIER - check campaign have not reached goal
     modifier campaignNotReachedGoal(uint256 _id) {
@@ -54,6 +47,17 @@ contract Crowdfunding {
         require(
             campaigns[_id].raisedAmount < tempCampaign.targetGoalAmount,
             "Campaign has already reached it's target goal"
+        );
+        _;
+    }
+
+    // TODO: MODIFIER - check whether donation money is not exceeding remaining amount
+    modifier donationAmountThreshold(uint256 _id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        require(
+            msg.value <
+                tempCampaign.targetGoalAmount - tempCampaign.raisedAmount,
+            "Donation amount cannot be more than remaining amount."
         );
         _;
     }
@@ -82,6 +86,11 @@ contract Crowdfunding {
         uint256 _targetGoalAmount,
         uint256 _minimumGoalAmount
     ) public {
+        require(
+            _targetGoalAmount >= _minimumGoalAmount,
+            "Minimum goal cannot be more than target goal."
+        );
+
         uint256 tempCampaignID = idGenerator.generateID();
         string memory tempStatus = getStatusString(CampaignStatus.Active);
 
@@ -101,17 +110,7 @@ contract Crowdfunding {
         usersCampaigns[msg.sender].push(tempCampaignID);
         campaignsIDs.push(tempCampaignID);
 
-        emit CreateCampaign(
-            tempCampaignID,
-            _title,
-            tempStatus,
-            _endDateTime,
-            _description,
-            _thumbnailURI,
-            0,
-            _targetGoalAmount,
-            _minimumGoalAmount
-        );
+        emit CreateCampaign(tempCampaign);
     }
 
     // TODO: FUNCTION - get campaign details
@@ -163,7 +162,19 @@ contract Crowdfunding {
         return publicCampaigns;
     }
 
+    // TODO: FUNCTION - contributing money to a campaign
     function contributeToCampaign(
         uint256 _id
-    ) public payable campaignNotReachedGoal(_id) {}
+    ) public payable campaignNotReachedGoal(_id) donationAmountThreshold(_id) {
+        Campaign memory tempCampaign = campaigns[_id];
+        tempCampaign.raisedAmount += msg.value;
+
+        if (tempCampaign.raisedAmount == tempCampaign.targetGoalAmount) {
+            tempCampaign.status = getStatusString(CampaignStatus.Completed);
+        }
+
+        campaigns[_id] = tempCampaign;
+
+        emit ContributeToCampaign(tempCampaign);
+    }
 }
