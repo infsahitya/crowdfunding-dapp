@@ -8,6 +8,12 @@ contract Crowdfunding {
     address private deployer;
     IDGenerator private idGenerator;
 
+    enum CampaignStatus {
+        Active,
+        Cancelled,
+        Completed
+    }
+
     struct Campaign {
         uint256 id;
         string title;
@@ -16,6 +22,7 @@ contract Crowdfunding {
         string thumbnailURI;
         uint256 targetGoalAmount;
         uint256 minimumGoalAmount;
+        string status;
     }
 
     uint256[] private campaignsIDs;
@@ -35,8 +42,19 @@ contract Crowdfunding {
         string _description,
         string _thumbnailURI,
         uint256 _targetGoalAmount,
-        uint256 _minimumGoalAmount
+        uint256 _minimumGoalAmount,
+        string status
     );
+
+    // TODO: FUNCTION - get a string value returned for the enum state of campaign status
+    function getStatusString(
+        CampaignStatus _status
+    ) internal pure returns (string memory) {
+        if (_status == CampaignStatus.Active) return "Active";
+        if (_status == CampaignStatus.Cancelled) return "Cancelled";
+        if (_status == CampaignStatus.Completed) return "Completed";
+        return "Pending";
+    }
 
     // TODO: FUNCTION - get deployer address
     function getDeployer() public view returns (address) {
@@ -53,6 +71,7 @@ contract Crowdfunding {
         uint256 _minimumGoalAmount
     ) public {
         uint256 tempCampaignID = idGenerator.generateID();
+        CampaignStatus tempStatus = CampaignStatus.Active;
 
         Campaign memory tempCampaign = Campaign(
             tempCampaignID,
@@ -61,7 +80,8 @@ contract Crowdfunding {
             _description,
             _thumbnailURI,
             _targetGoalAmount,
-            _minimumGoalAmount
+            _minimumGoalAmount,
+            getStatusString(tempStatus)
         );
 
         campaigns[tempCampaignID] = tempCampaign;
@@ -75,7 +95,8 @@ contract Crowdfunding {
             _description,
             _thumbnailURI,
             _targetGoalAmount,
-            _minimumGoalAmount
+            _minimumGoalAmount,
+            getStatusString(tempStatus)
         );
     }
 
