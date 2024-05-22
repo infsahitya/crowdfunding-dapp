@@ -268,6 +268,7 @@ contract Crowdfunding {
         }
 
         tempCampaign.raisedAmount = 0;
+        tempCampaign.status = getStatusString(CampaignStatus.Cancelled);
         campaigns[_id] = tempCampaign;
 
         emit AbortCampaign(tempCampaign);
