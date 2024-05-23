@@ -1,10 +1,10 @@
 export const Subscribe = () => {
   return (
-    <div className="relative bg-deep-purple-accent-400">
+    <div className="relative">
       <div className="absolute inset-x-0 bottom-0">
         <svg
           viewBox="0 0 224 12"
-          fill="currentColor"
+          fill="#b4da61"
           className="w-full -mb-1 text-white"
           preserveAspectRatio="none"
         >
@@ -19,7 +19,7 @@ export const Subscribe = () => {
             jumps over a{' '}
             <span className="relative inline-block px-2">
               <div className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
-              <span className="relative text-teal-900">lazy dog</span>
+              <span className="relative text-primary">lazy dog</span>
             </span>
           </h2>
           <p className="mb-6 text-base text-indigo-100 md:text-lg">

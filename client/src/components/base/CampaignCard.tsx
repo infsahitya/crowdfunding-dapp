@@ -32,24 +32,24 @@ const CampaingCard = () => {
 
             <div className="grid grid-cols-2 grid-rows-2 gap-2 mt-5">
               <p className="inline-flex flex-col xl:flex-row xl:items-center text-gray-300">
-                <span className="mt-2 xl:mt-0">
+                <span className="">
                   ETH Funded
                 </span>
               </p>
               <p className="inline-flex flex-col xl:flex-row xl:items-center text-gray-300 ml-8">
-                <span className="mt-2 xl:mt-0">
+                <span className="">
                   ETH Raised
                 </span>
               </p>
-              <p className="inline-flex flex-col xl:flex-row xl:items-center text-gray-300">
+              <p className="inline-flex flex-row items-center text-gray-300">
                 <FaEthereum className=" text-primary"/>
-                <span className="mt-2 xl:mt-0">
+                <span className="">
                   1,386
                 </span>
               </p>
-              <p className="inline-flex flex-col xl:flex-row xl:items-center text-gray-300 ml-8">
+              <p className="inline-flex flex-row items-center text-gray-300 ml-8">
                 <FaEthereum className=" text-primary"/>
-                <span className="mt-2 xl:mt-0">
+                <span className="">
                   1.98
                 </span>
               </p>
