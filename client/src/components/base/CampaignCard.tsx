@@ -1,6 +1,8 @@
 import { Covid_Img } from "@/assets";
 import { FaEthereum } from "react-icons/fa6";
 import { IoIosTimer } from "react-icons/io";
+import { Progress } from "@/components/ui/progress"
+
 
 const CampaingCard = () => {
   return (
@@ -69,7 +71,11 @@ const CampaingCard = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 mt-8">
+            <div className=" mt-4">
+              <Progress value={33} />
+            </div>
+
+            <div className="grid grid-cols-2 mt-4">
               <div className="flex items-center">
                 <div className="relative">
                   <IoIosTimer size={26}/>
@@ -81,11 +87,8 @@ const CampaingCard = () => {
               </div>
 
               <div className="flex justify-end">
-                <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl">
-                  <span className="text-sm uppercase">
-                    $
-                  </span>
-                  <span className="text-lg">3,200</span>/m
+                <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl text-lg">
+                 33%
                 </p>
               </div>
             </div>
