@@ -38,16 +38,33 @@ contract Crowdfunding {
         idGenerator = IDGenerator(_idGeneratorAddress);
     }
 
-    // TODO: EVENT - event for creating a campaign
+    /*
+     * EVENT: CreateCampaign
+     * An event to emit information about the campaign which is
+     * created by the user.
+     */
     event CreateCampaign(Campaign _campaign);
 
-    // TODO: EVENT - event for donating money to campaign
+    /*
+     * EVENT: ContributeToCampaign
+     * An event to emit information about the campaign in which
+     * user has contributed to.
+     */
     event ContributeToCampaign(Campaign _campaign);
 
-    // TODO: EVENT - event for ending the campaign and withdrawing funds from it
+    /*
+     * EVENT: EndCampaign
+     * An event to emit information about the campaign which
+     * has to end after reaching it's target or minimum
+     * goal.
+     */
     event EndCampaign(Campaign _campaign);
 
-    // TODO: EVENT - event for aborting the campaign and refunding all the donors
+    /*
+     * EVENT: AboutCampaign
+     * An event to emit information about the campaign which
+     * has to be aborted if it's owner wants to.
+     */
     event AbortCampaign(Campaign _campaign);
 
     // TODO: MODIFIER - check whether campaign status before contribution
