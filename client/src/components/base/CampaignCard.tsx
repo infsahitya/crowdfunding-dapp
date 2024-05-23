@@ -16,22 +16,6 @@ const CampaingCard = () => {
                 {/* </div> */}
               </div>
 
-              <div className="absolute flex justify-center bottom-0 mb-3">
-                <div className="flex bg-white px-4 py-1 space-x-5 rounded-lg overflow-hidden shadow">
-                  <p className="flex items-center font-medium text-gray-800">
-                    3 + 1
-                  </p>
-
-                  <p className="flex items-center font-medium text-gray-800">
-                    2
-                  </p>
-
-                  <p className="flex items-center font-medium text-gray-800">
-                    3
-                  </p>
-                </div>
-              </div>
-
               <span className="absolute top-0 left-0 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-red-500 text-sm font-medium text-white select-none">
                 Active
               </span>
