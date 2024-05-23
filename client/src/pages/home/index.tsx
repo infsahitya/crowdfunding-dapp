@@ -1,5 +1,6 @@
 import CampaingCard from "@/components/base/CampaignCard";
 import HeroSection from "@/components/base/HeroSection";
+import { Subscribe } from "@/components/base/Subscribe";
 
 export default function __home() {
   return (
@@ -18,6 +19,10 @@ export default function __home() {
           <CampaingCard />
           <CampaingCard />
         </div>
+
+        <>
+          <Subscribe />
+        </>
       </div>
     </div>
   )
