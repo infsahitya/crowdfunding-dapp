@@ -12,7 +12,7 @@ const NavLinkOpt = [
 const Navbar: React.FC = () => {
   return (
     <div>
-      <nav className="relative px-4 py-4 flex justify-between items-center bg-[#343A40] shadow-lg shadow-background">
+      <nav className="relative px-6 py-5 flex justify-between items-center bg-[#343A40] shadow-lg shadow-background">
         <a className="text-3xl font-bold leading-none text-gray-200" href="#">
           CrowdHelp
         </a>
@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
                   {link.name}
                 </NavLink>
               </li>
-              <li className="text-gray-300">
+              <li className={`text-gray-300 ${i === NavLinkOpt.length - 1 ? 'hidden' : ''}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" className="w-4 h-4 current-fill" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
                 </svg>
