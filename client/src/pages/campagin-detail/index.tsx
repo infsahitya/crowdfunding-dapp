@@ -40,7 +40,7 @@ export default function __campaignDetail() {
             </div>
 
             {/* -------contribution details------- */}
-            <div className=" text-gray-300">
+            <div className=" text-gray-300 mb-6">
               <h2 className=" text-white text-xl font-medium mb-3">Contribution Details</h2>
 
               <div className=" w-full flex flex-col rounded-lg bg-[#343A40] p-6 py-8">
@@ -83,7 +83,23 @@ export default function __campaignDetail() {
               </div>
 
             </div>
+
+            {/* --------danger zone-------- */}
+            <div>
+              <h2 className=" text-white text-xl font-medium mb-4">Danger Zone</h2>
+            </div>
+
+            <div className=" px-6 py-3 rounded-lg bg-red-300 flex justify-between items-center">
+                <div>
+                  <h4 className=" text-lg font-bold">Quit & Refund</h4>
+                  <p className=" text-base">Once you end a campaign, there is no going back. <br />Please be certain.</p>
+                </div>
+                <button className=" uppercase bg-red-600 rounded-lg shadow-md text-white p-6 font-medium">
+                  Abort <br />Campaign
+                </button>
+            </div>
           </div>
+
 
           {/* -------left side------- */}
           <div className=" w-[50%] px-4 text-gray-300">
