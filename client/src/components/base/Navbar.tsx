@@ -6,8 +6,8 @@ import { MdCreate } from 'react-icons/md';
 
 const NavLinkOpt = [
   {name:"Home", path: '/'},
-  {name:"About Us", path: '/about-us'},
-  {name:"Contact", path: '/contact'}];
+  {name:"About Us", path: 'about-us'},
+  {name:"Contact", path: 'contact-us'}];
 
 const Navbar: React.FC = () => {
   return (
@@ -38,10 +38,10 @@ const Navbar: React.FC = () => {
             </>
           ))}
         </ul>
-        <Button className="  lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-200 text-sm text-gray-900 font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
+        <NavLink to={'create-campagin'} className="  lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-200 text-sm text-gray-900 font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
           <MdCreate />
           <span>CREATE CAMPAIGN</span>
-        </Button>
+        </NavLink>
         <Button className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
           <FaLink />
           <span>

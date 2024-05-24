@@ -12,6 +12,7 @@ export default function __campaignDetail() {
     <div className=" w-full relative px-10 py-8">
       <h1 className=" text-xl font-medium text-white mb-4">About Campaign</h1>
         <div className=" w-full relative flex">
+          {/* ----------right side------- */}
           <div className=" w-[50%] ">
             {/* -------img-wrapper------- */}
             <div 
@@ -102,8 +103,7 @@ export default function __campaignDetail() {
                 </button>
             </div>
           </div>
-
-
+          
           {/* -------left side------- */}
           <div className=" w-[50%] pl-6 pr-4 text-gray-300">
             {/* ---------------- */}
