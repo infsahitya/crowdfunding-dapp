@@ -1,4 +1,4 @@
-import { ErrorPage, Home, MainPage } from "@/pages";
+import { CampaignDetail, ErrorPage, Home, MainPage } from "@/pages";
 import { RouteObject } from "react-router-dom";
 
 export const PublicRoutes: RouteObject[] = [
@@ -10,6 +10,10 @@ export const PublicRoutes: RouteObject[] = [
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: 'campagin/:campaignId',
+        element: <CampaignDetail />,
       }
     ]
   },
