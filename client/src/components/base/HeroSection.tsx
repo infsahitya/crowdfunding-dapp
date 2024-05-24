@@ -13,7 +13,7 @@ export default function HeroSection() {
         </p>
         <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
           <Link to={'contact-us'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Contact Us</Link>
-          <Link to={'create-campaign'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800 hover:border-primary hover:text-primary">Create Campaing</Link>
+          <Link to={'create-campagin'} rel="noopener noreferrer" className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800 hover:border-primary hover:text-primary">Create Campaing</Link>
         </div>
       </div>
       <div className="flex items-center justify-center py-0 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-[30rem] xl:h-112 2xl:h-128">
