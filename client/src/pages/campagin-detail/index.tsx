@@ -43,8 +43,8 @@ export default function __campaignDetail() {
             <div className=" text-gray-300">
               <h2 className=" text-white text-xl font-medium mb-3">Contribution Details</h2>
 
-              <div className=" w-full flex flex-col rounded-lg bg-[#343A40] p-6">
-                <div className=" flex items-center justify-between mb-2">
+              <div className=" w-full flex flex-col rounded-lg bg-[#343A40] p-6 py-8">
+                <div className=" flex items-center justify-between mb-6">
                   <div>
                     <p>Minimum contribution amount</p>
                     <span className=" flex gap-1 items-center text-lg mt-1">
@@ -52,7 +52,7 @@ export default function __campaignDetail() {
                       0.001ETH
                     </span>
                   </div>
-                  <div className=" basis-[50%]">
+                  <div className=" basis-[45%]">
                     <p>Goal</p>
                     <span className=" flex gap-1 items-center text-lg mt-1">
                       <FaEthereum className=" text-primary"/>
@@ -62,18 +62,20 @@ export default function __campaignDetail() {
                 </div>
 
                 <div className=" flex items-center justify-between">
-                  <div className=" basis-[50%]">
+                  <div className=" w-[50%] basis-[50%]">
                     <p>Wallet Address of FundRaiser</p>
-                    <span className=" flex gap-1 items-center text-lg mt-1">
-                      <IoWalletOutline />
-                      0.001ETH
+                    <span className=" w-full flex gap-2 items-center text-lg mt-1">
+                      <IoWalletOutline size={28}/>
+                      <span className="w-full mr-10 overflow-hidden text-ellipsis whitespace-nowrap">
+                        0x1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t
+                      </span>
                     </span>
                   </div>
-                  <div className=" basis-[50%]">
+                  <div className=" basis-[45%]">
                     <p>Contribution are accepted till <span className=" italic">(Deadline)</span></p>
-                    <span className=" flex gap-1 items-center text-lg mt-1">
-                      <IoIosTimer size={26}/>
-                      0.001ETH
+                    <span className=" w-full flex gap-2 items-center text-lg mt-1 line-clamp-1">
+                      <IoIosTimer size={24}/>
+                      Tue May 29 2024 
                     </span>
                   </div>
                 </div>
