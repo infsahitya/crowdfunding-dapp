@@ -1,10 +1,13 @@
 import { Covid_Img } from "@/assets";
 import { Progress } from "@/components/ui/progress";
+import { FaEthereum } from "react-icons/fa";
+import { IoIosTimer } from "react-icons/io";
+import { IoWalletOutline } from "react-icons/io5";
 
 export default function __campaignDetail() {
   return (
     <div className=" w-full relative px-10 py-8">
-      <h1 className=" text-xl font-medium text-gray-300 mb-4">About Campaign</h1>
+      <h1 className=" text-xl font-medium text-white mb-4">About Campaign</h1>
         <div className=" w-full relative flex">
           <div className=" w-[50%] ">
             {/* -------img-wrapper------- */}
@@ -31,20 +34,58 @@ export default function __campaignDetail() {
             </div>
 
             {/* --------description---------- */}
-            <div className=" ">
-              <h2 className=" text-gray-300 text-xl font-medium">Description</h2>
+            <div className=" mb-6">
+              <h2 className=" text-white text-xl font-medium">Description</h2>
               <p className=" text-gray-300 text-base line-clamp-3">Take part in giving reliefs to Covid-19 victims Take part in giving reliefs to Covid-19 victims Take part in giving reliefs to Covid-19 victims Take part in giving reliefs to Covid-19 victims Take part in giving reliefs to Covid-19 victims Take part in giving reliefs to Covid-19 victims</p>
             </div>
 
             {/* -------contribution details------- */}
-            <div>
+            <div className=" text-gray-300">
+              <h2 className=" text-white text-xl font-medium mb-3">Contribution Details</h2>
+
+              <div className=" w-full flex flex-col rounded-lg bg-[#343A40] p-6">
+                <div className=" flex items-center justify-between mb-2">
+                  <div>
+                    <p>Minimum contribution amount</p>
+                    <span className=" flex gap-1 items-center text-lg mt-1">
+                      <FaEthereum className=" text-primary"/>
+                      0.001ETH
+                    </span>
+                  </div>
+                  <div className=" basis-[50%]">
+                    <p>Goal</p>
+                    <span className=" flex gap-1 items-center text-lg mt-1">
+                      <FaEthereum className=" text-primary"/>
+                      0.001ETH
+                    </span>
+                  </div>
+                </div>
+
+                <div className=" flex items-center justify-between">
+                  <div className=" basis-[50%]">
+                    <p>Wallet Address of FundRaiser</p>
+                    <span className=" flex gap-1 items-center text-lg mt-1">
+                      <IoWalletOutline />
+                      0.001ETH
+                    </span>
+                  </div>
+                  <div className=" basis-[50%]">
+                    <p>Contribution are accepted till <span className=" italic">(Deadline)</span></p>
+                    <span className=" flex gap-1 items-center text-lg mt-1">
+                      <IoIosTimer size={26}/>
+                      0.001ETH
+                    </span>
+                  </div>
+                </div>
+
+              </div>
 
             </div>
           </div>
 
           {/* -------left side------- */}
           <div className=" w-[50%] px-4 text-gray-300">
-            <h3 className=" text-lg font-medium mb-4">Current status of campaign</h3>
+            <h3 className=" text-lg font-medium mb-4 text-white">Current status of campaign</h3>
 
             <div className=" bg-[#343A40] rounded-lg p-6">
               <h3 className=" text-xl font-medium mb-4">Campaign Balance</h3>
