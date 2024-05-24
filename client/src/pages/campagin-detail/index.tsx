@@ -29,12 +29,12 @@ export default function __campaignDetail() {
           </div>
 
           <div className=" w-[50%] px-4 text-gray-300">
-            <h3>Current status of campaign</h3>
+            <h3 className=" text-lg font-medium mb-4">Current status of campaign</h3>
 
-            <div>
-              <h3>Campaign Balance</h3>
+            <div className=" bg-[#343A40] rounded-lg p-6">
+              <h3 className=" text-xl font-medium mb-4">Campaign Balance</h3>
               <p>Amount stored in smart contract.</p>
-              <div className="flex mt-3 mb-3 items-center justify-between gap-5">
+              <div className="flex mb-1 items-center justify-between gap-5">
                 <Progress value={33} className=" h-2"/>
                 <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl text-lg">
                  33%
