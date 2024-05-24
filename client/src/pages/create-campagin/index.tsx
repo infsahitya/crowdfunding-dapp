@@ -31,6 +31,41 @@ export default function __createCampaign() {
               </div>
             </div>
           </div>
+
+          <div className="flex flex-col">
+            <label className="leading-loose text-white">Goal</label>
+            <div className="relative focus-within:text-gray-300 text-gray-400">
+              <input type="text" className="pr-4 pl-10 px-4 py-4 border focus:ring-primary focus:border-primary w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-300 placeholder:text-gray-300 bg-background" placeholder="0.001ETH" />
+              <div className="absolute left-4 top-[16px]">
+                <FaEthereum className=" text-gray-500 text-xl"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <div className="flex flex-col">
+              <label className="leading-loose">Start</label>
+              <div className="relative focus-within:text-gray-300 text-gray-400">
+                <input type="text" className="pr-4 pl-10 px-4 py-4 border focus:ring-primary focus:border-primary w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-300 placeholder:text-gray-300 bg-background" placeholder="25/02/2020" />
+                <div className="absolute left-2 top-[16px]">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <label className="leading-loose">End</label>
+              <div className="relative focus-within:text-gray-300 text-gray-400">
+              <input type="text" className="pr-4 pl-10 px-4 py-4 border focus:ring-primary focus:border-primary w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-300 placeholder:text-gray-300 bg-background" placeholder="26/02/2020" />
+                <div className="absolute left-2 top-[16px]">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* --lefet side-- */}
