@@ -6,7 +6,7 @@ export default function __createCampaign() {
   return (
     <div className=" p-6 pt-8">
       <div className="flex items-center space-x-5">
-        <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
+        <div className="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-800 text-2xl font-mono">
           <MdCampaign />
         </div>
         <div className="block pl-2 font-semibold text-xl self-start text-white">
