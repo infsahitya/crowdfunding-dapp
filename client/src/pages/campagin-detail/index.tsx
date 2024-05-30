@@ -1,4 +1,4 @@
-import { Covid_Img } from "@/assets";
+import { formatDate } from "@/utils";
 import { FaEthereum } from "react-icons/fa";
 import { IoIosTimer } from "react-icons/io";
 import { useParams } from "react-router-dom";
@@ -8,16 +8,15 @@ import { IoWalletOutline } from "react-icons/io5";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import useCampaignDetails from "@/hooks/useCampaignDetails";
-import { parseETH } from "@/utils";
 
 export default function __campaignDetail() {
   const { campaignId } = useParams();
   const { campaignDetails } = useCampaignDetails(campaignId!);
 
   const {
-    id,
     title,
     status,
+    donors,
     creator,
     endDateTime,
     description,
@@ -26,6 +25,9 @@ export default function __campaignDetail() {
     targetGoalAmount,
     minimumGoalAmount,
   } = campaignDetails;
+
+  const donationProgress: number =
+    (Number(raisedAmount) / Number(targetGoalAmount)) * 100;
 
   return (
     <div className=" w-full relative px-10 py-8">
@@ -80,14 +82,14 @@ export default function __campaignDetail() {
                   <p>Minimum contribution amount</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    {parseETH(minimumGoalAmount)}
+                    {Number(minimumGoalAmount)} WEI
                   </span>
                 </div>
                 <div className=" basis-[45%]">
                   <p>Goal</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    {parseETH(targetGoalAmount)}
+                    {Number(targetGoalAmount)} WEI
                   </span>
                 </div>
               </div>
@@ -109,7 +111,7 @@ export default function __campaignDetail() {
                   </p>
                   <span className=" w-full flex gap-2 items-center text-lg mt-1 line-clamp-1">
                     <IoIosTimer size={24} />
-                    Tue May 29 2024
+                    {formatDate(endDateTime)}
                   </span>
                 </div>
               </div>
@@ -150,12 +152,15 @@ export default function __campaignDetail() {
               <h3 className=" text-xl font-medium mb-4">Campaign Balance</h3>
               <p>Amount stored in smart contract.</p>
               <div className="flex mb-1 items-center justify-between gap-5">
-                <Progress value={33} className=" h-2" />
+                <Progress value={donationProgress} className=" h-2" />
                 <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl text-lg">
-                  33%
+                  {donationProgress}%
                 </p>
               </div>
-              <p>0 ETH funded by 0 backers</p>
+              <p>
+                {Number(raisedAmount)} WEI funded by {donors?.length || 0}{" "}
+                backers
+              </p>
             </div>
           </div>
 

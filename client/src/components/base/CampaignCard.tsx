@@ -1,4 +1,4 @@
-import { parseETH } from "@/utils";
+import { formatDate, parseETH } from "@/utils";
 import { Link } from "react-router-dom";
 import { IoIosTimer } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa6";
@@ -80,7 +80,9 @@ const CampaingCard = ({ ...props }: CampaignProps) => {
                 <IoIosTimer size={26} />
               </div>
 
-              <p className="ml-2 text-gray-300 line-clamp-1">1 day left</p>
+              <p className="ml-2 text-gray-300 line-clamp-1">
+                {formatDate(endDateTime)}
+              </p>
             </div>
 
             <div className="flex justify-end">
