@@ -1,0 +1,84 @@
+{
+  "campaigns": [
+    {
+      "endDateTime": "2024-12-31T23:59:59Z",
+      "title": "Local Library Fund",
+      "targetGoalAmount": 8,
+      "minimumGoalAmount": 5,
+      "description": "Help us raise funds to update our local library's collection.",
+      "thumbnailURI": "http://example.com/library.jpg"
+    },
+    {
+      "endDateTime": "2024-08-15T23:59:59Z",
+      "title": "Community Clean-Up",
+      "targetGoalAmount": 6,
+      "minimumGoalAmount": 3,
+      "description": "Join our efforts to clean up the neighborhood park.",
+      "thumbnailURI": "http://example.com/cleanup.jpg"
+    },
+    {
+      "endDateTime": "2025-01-01T23:59:59Z",
+      "title": "Art Supplies for Kids",
+      "targetGoalAmount": 7,
+      "minimumGoalAmount": 4,
+      "description": "Provide art supplies to children in need.",
+      "thumbnailURI": "http://example.com/art-supplies.jpg"
+    },
+    {
+      "endDateTime": "2024-07-01T23:59:59Z",
+      "title": "Food Bank Donation",
+      "targetGoalAmount": 9,
+      "minimumGoalAmount": 6,
+      "description": "Support our local food bank by contributing to our donation drive.",
+      "thumbnailURI": "http://example.com/food-bank.jpg"
+    },
+    {
+      "endDateTime": "2024-10-20T23:59:59Z",
+      "title": "Youth Sports Equipment",
+      "targetGoalAmount": 5,
+      "minimumGoalAmount": 3,
+      "description": "Help us buy new sports equipment for our youth teams.",
+      "thumbnailURI": "http://example.com/sports-equipment.jpg"
+    },
+    {
+      "endDateTime": "2024-09-10T23:59:59Z",
+      "title": "Senior Center Activities",
+      "targetGoalAmount": 4,
+      "minimumGoalAmount": 2,
+      "description": "Fund activities and outings for residents of the senior center.",
+      "thumbnailURI": "http://example.com/senior-center.jpg"
+    },
+    {
+      "endDateTime": "2024-11-30T23:59:59Z",
+      "title": "Animal Rescue Operations",
+      "targetGoalAmount": 8,
+      "minimumGoalAmount": 5,
+      "description": "Support our animal rescue operations and help save more lives.",
+      "thumbnailURI": "http://example.com/animal-rescue.jpg"
+    },
+    {
+      "endDateTime": "2024-06-15T23:59:59Z",
+      "title": "Urban Green Spaces",
+      "targetGoalAmount": 7,
+      "minimumGoalAmount": 4,
+      "description": "Help us create more green spaces in urban areas.",
+      "thumbnailURI": "http://example.com/green-spaces.jpg"
+    },
+    {
+      "endDateTime": "2024-12-25T23:59:59Z",
+      "title": "Holiday Meal Drive",
+      "targetGoalAmount": 6,
+      "minimumGoalAmount": 4,
+      "description": "Ensure everyone has a warm meal this holiday season.",
+      "thumbnailURI": "http://example.com/meal-drive.jpg"
+    },
+    {
+      "endDateTime": "2024-05-31T23:59:59Z",
+      "title": "School Playground Renovation",
+      "targetGoalAmount": 9,
+      "minimumGoalAmount": 7,
+      "description": "Help us renovate the playground for our local elementary school.",
+      "thumbnailURI": "http://example.com/playground.jpg"
+    }
+  ]
+}
