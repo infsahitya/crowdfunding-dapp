@@ -22,7 +22,7 @@ export default function __mainPage() {
 
     setApp(app);
     setProvider(provider);
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className=" bg-background h-screen">

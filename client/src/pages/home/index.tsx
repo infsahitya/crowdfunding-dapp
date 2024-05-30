@@ -1,13 +1,12 @@
-import { ethers } from "ethers";
 import { useEffect } from "react";
+import useAppStore from "@/store/app.store";
 import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
 import { Subscribe } from "@/components/base/Subscribe";
 import CampaingCard from "@/components/base/CampaignCard";
 
 export default function __home() {
-  // eslint-disable-next-line
-  //@ts-ignore
+  const app = useAppStore((state) => state.getApp());
 
   useEffect(() => {
     (async () => {
