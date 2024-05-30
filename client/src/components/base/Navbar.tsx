@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
     <div>
       <nav className="relative px-6 py-5 flex justify-between items-center bg-[#343A40] shadow-lg shadow-background">
         <a className="text-3xl font-bold leading-none text-gray-200" href="#">
-          CrowdHelp
+          Crowdfunding App
         </a>
         <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
           {NavLinkOpt.map((link, i) => (
