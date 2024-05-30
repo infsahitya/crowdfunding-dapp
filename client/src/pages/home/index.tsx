@@ -11,7 +11,7 @@ export default function __home() {
   //@ts-ignore
   const provider = new ethers.BrowserProvider(window.ethereum);
   const app = new ethers.Contract(
-    "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+    import.meta.env.VITE_CONTRACT_DEPLOYED_ADDRESS,
     abi,
     provider,
   );
@@ -20,8 +20,9 @@ export default function __home() {
     (async () => {
       const data = await app.getUserCampaigns();
 
-      console.log("User Campaigns - ",
-      // eslint-disable-next-line
+      console.log(
+        "User Campaigns - ",
+        // eslint-disable-next-line
         data.map((campaign: any) => {
           return {
             id: campaign.id,
@@ -31,8 +32,9 @@ export default function __home() {
       );
 
       const data2 = await app.getPublicCampaigns();
-      console.log("Public Campaigns - ",
-      // eslint-disable-next-line
+      console.log(
+        "Public Campaigns - ",
+        // eslint-disable-next-line
         data2.map((campaign: any) => {
           return {
             id: campaign.id,
@@ -41,7 +43,6 @@ export default function __home() {
         }),
       );
     })();
-
   }, []); // eslint-disable-line
 
   return (
