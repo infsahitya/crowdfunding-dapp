@@ -31,7 +31,7 @@ contract Crowdfunding {
     uint256[] private campaignsIDs;
     mapping(uint256 => Campaign) private campaigns;
     mapping(address => uint256[]) private usersCampaigns;
-    mapping(uint256 => mapping(address => uint256)) usersDonations;
+    mapping(uint256 => mapping(address => uint256)) private usersDonations;
 
     constructor(address _idGeneratorAddress) {
         deployer = msg.sender;
