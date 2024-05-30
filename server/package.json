@@ -1,5 +1,9 @@
 {
   "name": "hardhat-project",
+  "scripts": {
+    "test": "npx hardhat test",
+    "deploy:local": "npx hardhat run ./scripts/crowdfunding.deploy.ts --network localhost"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.6",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

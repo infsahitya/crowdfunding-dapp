@@ -2,7 +2,7 @@ import hre from "hardhat";
 import { ContractFactory } from "ethers";
 import { Crowdfunding, IDGenerator } from "../typechain-types";
 
-const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
+// const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
 
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
