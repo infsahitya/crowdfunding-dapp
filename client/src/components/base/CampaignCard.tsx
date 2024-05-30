@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { IoIosTimer } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa6";
 import { Progress } from "@/components/ui/progress";
+import { parseETH } from "@/utils";
 
 const CampaingCard = ({ ...props }: CampaignProps) => {
   const {
@@ -14,6 +15,9 @@ const CampaingCard = ({ ...props }: CampaignProps) => {
     targetGoalAmount,
     endDateTime,
   } = props;
+
+  const donationProgress: number =
+    (Number(raisedAmount) / Number(targetGoalAmount)) * 100;
 
   return (
     <div className="relative mx-auto w-full">
@@ -58,16 +62,16 @@ const CampaingCard = ({ ...props }: CampaignProps) => {
             </p>
             <p className="inline-flex flex-row items-center text-gray-300">
               <FaEthereum className=" text-primary" />
-              <span className="">{Number(raisedAmount).toString()}</span>
+              <span className="">{parseETH(raisedAmount)}</span>
             </p>
             <p className="inline-flex flex-row items-center text-gray-300 ml-8">
               <FaEthereum className=" text-primary" />
-              <span className="">{Number(targetGoalAmount).toString()}</span>
+              <span className="">{parseETH(targetGoalAmount)}</span>
             </p>
           </div>
 
           <div className=" mt-4">
-            <Progress value={33} />
+            <Progress value={donationProgress} />
           </div>
 
           <div className="grid grid-cols-2 mt-4">
@@ -81,10 +85,7 @@ const CampaingCard = ({ ...props }: CampaignProps) => {
 
             <div className="flex justify-end">
               <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl text-lg">
-                {(
-                  (Number(raisedAmount) / Number(targetGoalAmount)) *
-                  100
-                ).toString()}
+                {donationProgress.toFixed(1).toString()}
               </p>
             </div>
           </div>
