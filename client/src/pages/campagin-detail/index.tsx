@@ -1,13 +1,21 @@
 import { Covid_Img } from "@/assets";
-import { Progress } from "@/components/ui/progress";
-import { BiInfoCircle } from "react-icons/bi";
 import { FaEthereum } from "react-icons/fa";
 import { IoIosTimer } from "react-icons/io";
-import { IoWalletOutline } from "react-icons/io5";
+import { useParams } from "react-router-dom";
+import { BiInfoCircle } from "react-icons/bi";
 import { TiInfoOutline } from "react-icons/ti";
+import { IoWalletOutline } from "react-icons/io5";
+import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
+import useCampaignDetails from "@/hooks/useCampaignDetails";
 
 export default function __campaignDetail() {
+  const { campaignId } = useParams();
+  const { campaignDetails } = useCampaignDetails(campaignId!);
+
+  console.log(campaignId);
+  console.log(campaignDetails);
+
   return (
     <div className=" w-full relative px-10 py-8">
       <h1 className=" text-xl font-medium text-white mb-4">About Campaign</h1>
