@@ -202,28 +202,37 @@ contract Crowdfunding {
      * except the one's created by the users who called the respective
      * function.
      */
+    // function getPublicCampaigns() public view returns (Campaign[] memory) {
+    //     uint256[] memory userCampaignsIDs = usersCampaigns[msg.sender];
+    //     Campaign[] memory publicCampaigns = new Campaign[](
+    //         campaignsIDs.length - userCampaignsIDs.length
+    //     );
+
+    //     for (uint256 i = 0; i < campaignsIDs.length; i++) {
+    //         bool skipIteration = false;
+
+    //         for (uint256 j = 0; j < userCampaignsIDs.length; j++) {
+    //             if (userCampaignsIDs[j] == campaignsIDs[i]) {
+    //                 skipIteration = true;
+    //                 break;
+    //             }
+    //         }
+
+    //         if (skipIteration) continue;
+
+    //         publicCampaigns[i] = campaigns[campaignsIDs[i]];
+    //     }
+
+    //     return publicCampaigns;
+    // }
     function getPublicCampaigns() public view returns (Campaign[] memory) {
-        uint256[] memory userCampaignsIDs = usersCampaigns[msg.sender];
-        Campaign[] memory publicCampaigns = new Campaign[](
-            campaignsIDs.length - userCampaignsIDs.length
-        );
+        Campaign[] memory allCampaigns = new Campaign[](campaignsIDs.length);
 
         for (uint256 i = 0; i < campaignsIDs.length; i++) {
-            bool skipIteration = false;
-
-            for (uint256 j = 0; j < userCampaignsIDs.length; j++) {
-                if (userCampaignsIDs[j] == campaignsIDs[i]) {
-                    skipIteration = true;
-                    break;
-                }
-            }
-
-            if (skipIteration) continue;
-
-            publicCampaigns[i] = campaigns[campaignsIDs[i]];
+            allCampaigns[i] = campaigns[campaignsIDs[i]];
         }
 
-        return publicCampaigns;
+        return allCampaigns;
     }
 
     // TODO: FUNCTION - contributing money to a campaign

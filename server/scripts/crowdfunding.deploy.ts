@@ -6,7 +6,7 @@ import { Crowdfunding, IDGenerator } from "../typechain-types";
 const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
+  const [deployer, randomUser] = await hre.ethers.getSigners();
   let app: Crowdfunding, idGenerator: IDGenerator;
 
   const IDGenerator: ContractFactory =
@@ -22,6 +22,22 @@ async function main() {
   )) as Crowdfunding;
 
   await app.waitForDeployment();
+
+  campaigns.forEach(async (campaign) => {
+    const transaction = await app
+      .connect(randomUser)
+      .createCampaign(
+        campaign.title,
+        campaign.endDateTime,
+        campaign.description,
+        campaign.thumbnailURI,
+        tokens(campaign.targetGoalAmount),
+        tokens(campaign.minimumGoalAmount),
+      );
+    await transaction.wait();
+
+    console.log(`Campaign Added - ${campaign.title}`);
+  });
 
   campaigns.forEach(async (campaign) => {
     const transaction = await app
