@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
   const account = useAuthStore((state) => state.getAccount());
   const setAccount = useAuthStore((state) => state.setAccount);
 
-  const { sdk, connected, connecting, provider, chainId } = useSDK();
+  const { sdk, connected, connecting, chainId } = useSDK();
 
   console.log("Connected - ", connected);
   console.log("Connecting - ", connecting);

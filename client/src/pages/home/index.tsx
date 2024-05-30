@@ -1,9 +1,37 @@
-import CampaingCard from "@/components/base/CampaignCard";
+import { ethers } from "ethers";
+import { useEffect } from "react";
 import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
 import { Subscribe } from "@/components/base/Subscribe";
+import CampaingCard from "@/components/base/CampaignCard";
+import { abi } from "../../../../server/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json";
 
 export default function __home() {
+  // eslint-disable-next-line
+  //@ts-ignore
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const app = new ethers.Contract(
+    "0xe7f1725e7734ce288f8367e1bb143e90bb3f0512",
+    abi,
+    provider,
+  );
+
+  useEffect(() => {
+    (async () => {
+      const data = await app.getUserCampaigns();
+
+      // eslint-disable-next-line
+      console.log(
+        data.map((campaign: any) => {
+          return {
+            id: campaign.id,
+            name: campaign.title,
+          };
+        }),
+      );
+    })();
+  }, []); // eslint-disable-line
+
   return (
     <div className=" text-gray-300 relative w-full">
       <HeroSection />

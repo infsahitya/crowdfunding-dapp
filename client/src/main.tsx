@@ -15,7 +15,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           name: "Crowdfunding App",
           url: window.location.href,
         },
-        infuraAPIKey: process.env.INFURA_API_KEY,
+        // infuraAPIKey: process.env.INFURA_API_KEY,
+        infuraAPIKey: "33dbe64fe278414ea99dde5b32d2f681",
       }}
     >
       <RouterProvider router={router} />
