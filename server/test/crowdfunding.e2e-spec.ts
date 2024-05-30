@@ -41,7 +41,7 @@ describe("Crowdfunding Platform", () => {
       idGenerator.getAddress(),
     )) as Crowdfunding;
 
-    await idGenerator.waitForDeployment();
+    await app.waitForDeployment();
   });
 
   describe("Deployment", () => {
