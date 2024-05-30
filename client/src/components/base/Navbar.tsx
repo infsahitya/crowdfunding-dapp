@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { FaLink } from "react-icons/fa";
@@ -13,7 +13,7 @@ const NavLinkOpt = [
 ];
 
 const Navbar: React.FC = () => {
-  const getAccount = useAuthStore((state) => state.getAccount());
+  const account = useAuthStore((state) => state.getAccount());
   const setAccount = useAuthStore((state) => state.setAccount);
 
   const { sdk, connected, connecting, provider, chainId } = useSDK();
@@ -21,6 +21,7 @@ const Navbar: React.FC = () => {
   console.log("Connected - ", connected);
   console.log("Connecting - ", connecting);
   console.log("Chain ID - ", chainId);
+  console.log("Get Account - ", account);
 
   async function connectToAccount() {
     try {
