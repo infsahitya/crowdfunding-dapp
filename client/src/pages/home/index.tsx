@@ -20,8 +20,8 @@ export default function __home() {
     (async () => {
       const data = await app.getUserCampaigns();
 
+      console.log("User Campaigns - ",
       // eslint-disable-next-line
-      console.log(
         data.map((campaign: any) => {
           return {
             id: campaign.id,
@@ -29,7 +29,19 @@ export default function __home() {
           };
         }),
       );
+
+      const data2 = await app.getPublicCampaigns();
+      console.log("Public Campaigns - ",
+      // eslint-disable-next-line
+        data2.map((campaign: any) => {
+          return {
+            id: campaign.id,
+            name: campaign.title,
+          };
+        }),
+      );
     })();
+
   }, []); // eslint-disable-line
 
   return (
