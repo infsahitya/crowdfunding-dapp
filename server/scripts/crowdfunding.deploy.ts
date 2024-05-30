@@ -36,7 +36,7 @@ async function main() {
       );
     await transaction.wait();
 
-    console.log("Campaign Added -", campaign.title);
+    console.log(`Campaign Added - ${campaign.title}`);
   });
 }
 
