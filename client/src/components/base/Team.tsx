@@ -1,6 +1,14 @@
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
-function TeamMember({ name, title, imageUrl }: {name: string, title: string, imageUrl: string}) {
+function TeamMember({
+  name,
+  title,
+  imageUrl,
+}: {
+  name: string;
+  title: string;
+  imageUrl: string;
+}) {
   return (
     <div className="w-full md:w-6/12 lg:w-3/12 mb-6 px-6 sm:px-6 lg:px-4 text-gray-300">
       <div className="flex flex-col">
@@ -24,20 +32,29 @@ function TeamMember({ name, title, imageUrl }: {name: string, title: string, ima
           {/* Social Icons */}
           <div className="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity duration-300">
             {/* Linkedin */}
-            <a href="#" className="flex rounded-full hover:bg-indigo-50 h-10 w-10">
-              <FaLinkedin className="mdi mdi-linkedin text-indigo-300 mx-auto mt-2"/>
+            <a
+              href="#"
+              className="flex rounded-full hover:bg-indigo-50 h-10 w-10"
+            >
+              <FaLinkedin className="mdi mdi-linkedin text-indigo-300 mx-auto mt-2" />
               <i className="mdi mdi-linkedin text-indigo-700 mx-auto mt-2"></i>
             </a>
 
             {/* Twitter */}
-            <a href="#" className="flex rounded-full hover:bg-blue-50 h-10 w-10">
-              <FaTwitter className="mdi mdi-twitter text-blue-400 mx-auto mt-2"/>
+            <a
+              href="#"
+              className="flex rounded-full hover:bg-blue-50 h-10 w-10"
+            >
+              <FaTwitter className="mdi mdi-twitter text-blue-400 mx-auto mt-2" />
               <i className="mdi mdi-twitter text-blue-400 mx-auto mt-2"></i>
             </a>
 
             {/* Instagram */}
-            <a href="#" className="flex rounded-full hover:bg-orange-50 h-10 w-10">
-              <FaInstagram className="mdi mdi-instagram text-orange-400 mx-auto mt-2"/>
+            <a
+              href="#"
+              className="flex rounded-full hover:bg-orange-50 h-10 w-10"
+            >
+              <FaInstagram className="mdi mdi-instagram text-orange-400 mx-auto mt-2" />
               <i className="mdi mdi-instagram text-orange-400 mx-auto mt-2"></i>
             </a>
           </div>
@@ -56,11 +73,14 @@ function Team() {
         <div className="flex flex-wrap justify-center text-center mb-24">
           <div className="w-full lg:w-6/12 px-4">
             {/* Header */}
-            <h1 className="text-gray-300 text-4xl font-bold mb-8">Meet the Team</h1>
+            <h1 className="text-gray-300 text-4xl font-bold mb-8">
+              Meet the Team
+            </h1>
 
             {/* Description */}
             <p className="text-gray-300 text-lg font-light">
-              With over 100 years of combined experience, we've got a well-seasoned team at the helm.
+              With over 100 years of combined experience, we've got a
+              well-seasoned team at the helm.
             </p>
           </div>
         </div>

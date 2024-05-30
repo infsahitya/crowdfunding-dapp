@@ -1,13 +1,14 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button } from '../ui/button';
-import { FaLink } from 'react-icons/fa';
-import { MdCreate } from 'react-icons/md';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "../ui/button";
+import { FaLink } from "react-icons/fa";
+import { MdCreate } from "react-icons/md";
 
 const NavLinkOpt = [
-  {name:"Home", path: '/'},
-  {name:"About Us", path: 'about-us'},
-  {name:"Contact", path: 'contact-us'}];
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "about-us" },
+  { name: "Contact", path: "contact-us" },
+];
 
 const Navbar: React.FC = () => {
   return (
@@ -20,33 +21,48 @@ const Navbar: React.FC = () => {
           {NavLinkOpt.map((link, i) => (
             <>
               <li key={i}>
-                <NavLink 
-                  to={link.path} 
+                <NavLink
+                  to={link.path}
                   className={({ isActive }) =>
-                  isActive
-                    ? "text-base text-primary font-semibold"
-                    : "text-base text-gray-300 hover:text-gray-100 hover:font-semibold"
-                  }>
+                    isActive
+                      ? "text-base text-primary font-semibold"
+                      : "text-base text-gray-300 hover:text-gray-100 hover:font-semibold"
+                  }
+                >
                   {link.name}
                 </NavLink>
               </li>
-              <li className={`text-gray-300 ${i === NavLinkOpt.length - 1 ? 'hidden' : ''}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" className="w-4 h-4 current-fill" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+              <li
+                className={`text-gray-300 ${i === NavLinkOpt.length - 1 ? "hidden" : ""}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  stroke="currentColor"
+                  className="w-4 h-4 current-fill"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                  />
                 </svg>
               </li>
             </>
           ))}
         </ul>
-        <NavLink to={'create-campagin'} className="  lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-200 text-sm text-gray-900 font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
+        <NavLink
+          to={"create-campagin"}
+          className="  lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-200 text-sm text-gray-900 font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2"
+        >
           <MdCreate />
           <span>CREATE CAMPAIGN</span>
         </NavLink>
         <Button className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
           <FaLink />
-          <span>
-            CONNECT WALLET
-          </span>
+          <span>CONNECT WALLET</span>
         </Button>
       </nav>
     </div>

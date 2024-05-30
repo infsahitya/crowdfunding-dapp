@@ -1,4 +1,12 @@
-import { AboutUs, CampaignDetail, ContactUs, CreateCampaign, ErrorPage, Home, MainPage } from "@/pages";
+import {
+  AboutUs,
+  CampaignDetail,
+  ContactUs,
+  CreateCampaign,
+  ErrorPage,
+  Home,
+  MainPage,
+} from "@/pages";
 import { RouteObject } from "react-router-dom";
 
 export const PublicRoutes: RouteObject[] = [
@@ -8,25 +16,25 @@ export const PublicRoutes: RouteObject[] = [
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: 'campagin/:campaignId',
+        path: "campagin/:campaignId",
         element: <CampaignDetail />,
       },
       {
-        path: 'create-campagin',
+        path: "create-campagin",
         element: <CreateCampaign />,
       },
       {
-        path: 'contact-us',
+        path: "contact-us",
         element: <ContactUs />,
       },
       {
-        path: 'about-us',
+        path: "about-us",
         element: <AboutUs />,
-      }
-    ]
+      },
+    ],
   },
-]
+];

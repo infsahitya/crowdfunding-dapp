@@ -16,7 +16,7 @@ export const Subscribe = () => {
           <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
             The quick, brown fox
             <br className="hidden md:block" />
-            jumps over a{' '}
+            jumps over a{" "}
             <span className="relative inline-block px-2">
               <div className="absolute inset-0 transform -skew-x-12 bg-teal-accent-400" />
               <span className="relative text-primary">lazy dog</span>
