@@ -82,14 +82,14 @@ export default function __campaignDetail() {
                   <p>Minimum contribution amount</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    {Number(minimumGoalAmount)} WEI
+                    {Number(minimumGoalAmount)} wei
                   </span>
                 </div>
                 <div className=" basis-[45%]">
                   <p>Goal</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    {Number(targetGoalAmount)} WEI
+                    {Number(targetGoalAmount)} wei
                   </span>
                 </div>
               </div>
@@ -158,7 +158,7 @@ export default function __campaignDetail() {
                 </p>
               </div>
               <p>
-                {Number(raisedAmount)} WEI funded by {donors?.length || 0}{" "}
+                {Number(raisedAmount)} wei funded by {donors?.length || 0}{" "}
                 backers
               </p>
             </div>
