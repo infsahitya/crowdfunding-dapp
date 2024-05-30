@@ -10,6 +10,7 @@ export default function __home() {
   // eslint-disable-next-line
   //@ts-ignore
   const provider = new ethers.BrowserProvider(window.ethereum);
+
   const app = new ethers.Contract(
     import.meta.env.VITE_CONTRACT_DEPLOYED_ADDRESS,
     abi,
