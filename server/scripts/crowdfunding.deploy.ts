@@ -1,6 +1,9 @@
 import hre from "hardhat";
 import { ContractFactory } from "ethers";
+import { campaigns } from "../seed/dummy.seed.json";
 import { Crowdfunding, IDGenerator } from "../typechain-types";
+
+const tokens = (n: number) => hre.ethers.parseUnits(n.toString(), "ether");
 
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
@@ -19,6 +22,22 @@ async function main() {
   )) as Crowdfunding;
 
   await app.waitForDeployment();
+
+  campaigns.forEach(async (campaign) => {
+    const transaction = await app
+      .connect(deployer)
+      .createCampaign(
+        campaign.title,
+        campaign.endDateTime,
+        campaign.description,
+        campaign.thumbnailURI,
+        tokens(campaign.targetGoalAmount),
+        tokens(campaign.minimumGoalAmount),
+      );
+    await transaction.wait();
+
+    console.log("Campaign Added -", campaign.title);
+  });
 }
 
 main().catch((error) => {
