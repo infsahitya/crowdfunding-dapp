@@ -8,13 +8,24 @@ import { IoWalletOutline } from "react-icons/io5";
 import { Progress } from "@/components/ui/progress";
 import { Checkbox } from "@/components/ui/checkbox";
 import useCampaignDetails from "@/hooks/useCampaignDetails";
+import { parseETH } from "@/utils";
 
 export default function __campaignDetail() {
   const { campaignId } = useParams();
   const { campaignDetails } = useCampaignDetails(campaignId!);
 
-  console.log(campaignId);
-  console.log(campaignDetails);
+  const {
+    id,
+    title,
+    status,
+    creator,
+    endDateTime,
+    description,
+    thumbnailURI,
+    raisedAmount,
+    targetGoalAmount,
+    minimumGoalAmount,
+  } = campaignDetails;
 
   return (
     <div className=" w-full relative px-10 py-8">
@@ -35,16 +46,16 @@ export default function __campaignDetail() {
               }}
             ></div>
             <img
-              src={Covid_Img}
-              alt="campaign img"
+              src={thumbnailURI}
+              alt={title}
               className=" w-full h-full rounded-xl z-0 object-fill"
             />
             <div className="p-4 absolute bottom-0 left-0 z-20">
               <span className="px-4 py-1 bg-primary text-black inline-flex items-center justify-center mb-2 rounded">
-                Active
+                {status}
               </span>
               <h2 className="text-4xl font-semibold text-gray-100 leading-tight mb-5">
-                Distribution of Covid Vaccine
+                {title}
               </h2>
             </div>
           </div>
@@ -53,11 +64,7 @@ export default function __campaignDetail() {
           <div className=" mb-6">
             <h2 className=" text-white text-xl font-medium">Description</h2>
             <p className=" text-gray-300 text-base line-clamp-3">
-              Take part in giving reliefs to Covid-19 victims Take part in
-              giving reliefs to Covid-19 victims Take part in giving reliefs to
-              Covid-19 victims Take part in giving reliefs to Covid-19 victims
-              Take part in giving reliefs to Covid-19 victims Take part in
-              giving reliefs to Covid-19 victims
+              {description}
             </p>
           </div>
 
@@ -73,14 +80,14 @@ export default function __campaignDetail() {
                   <p>Minimum contribution amount</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    0.001ETH
+                    {parseETH(minimumGoalAmount)}
                   </span>
                 </div>
                 <div className=" basis-[45%]">
                   <p>Goal</p>
                   <span className=" flex gap-1 items-center text-lg mt-1">
                     <FaEthereum className=" text-primary" />
-                    0.001ETH
+                    {parseETH(targetGoalAmount)}
                   </span>
                 </div>
               </div>
@@ -91,7 +98,7 @@ export default function __campaignDetail() {
                   <span className=" w-full flex gap-2 items-center text-lg mt-1">
                     <IoWalletOutline size={28} />
                     <span className="w-full mr-10 overflow-hidden text-ellipsis whitespace-nowrap">
-                      0x1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t
+                      {creator}
                     </span>
                   </span>
                 </div>
