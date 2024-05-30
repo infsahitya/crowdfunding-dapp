@@ -184,8 +184,12 @@ describe("Crowdfunding Platform", () => {
     let transaction: any, receipt: any, logs: any[];
     const donationAmount = tokens(0.5);
 
-    const usersBalance: Record<"user2", { pre: bigint; post: bigint }> = {
+    const usersBalance: Record<
+      "user2" | "user3",
+      { pre: bigint; post: bigint }
+    > = {
       user2: { pre: 0n, post: 0n },
+      user3: { pre: 0n, post: 0n },
     };
 
     beforeEach(async () => {
@@ -205,8 +209,9 @@ describe("Crowdfunding Platform", () => {
         (log: any) => log.fragment.name === EventIdentifiers.createCampaign,
       );
 
-      pre_user2Money = await hre.ethers.provider.getBalance(user2.getAddress());
-      console.log("Pre User 2 Money - ", pre_user2Money);
+      usersBalance.user2.pre = await hre.ethers.provider.getBalance(
+        user2.getAddress(),
+      );
 
       transaction = await app
         .connect(user2)
@@ -215,12 +220,13 @@ describe("Crowdfunding Platform", () => {
         });
       await transaction.wait();
 
-      console.log(
-        "Post User 2 Money - ",
-        await hre.ethers.provider.getBalance(user2.getAddress()),
+      usersBalance.user2.post = await hre.ethers.provider.getBalance(
+        user2.getAddress(),
       );
 
-      pre_user3Money = await hre.ethers.provider.getBalance(user3.getAddress());
+      usersBalance.user3.pre = await hre.ethers.provider.getBalance(
+        user3.getAddress(),
+      );
 
       transaction = await app
         .connect(user3)
@@ -228,6 +234,10 @@ describe("Crowdfunding Platform", () => {
           value: donationAmount,
         });
       await transaction.wait();
+
+      usersBalance.user3.post = await hre.ethers.provider.getBalance(
+        user3.getAddress(),
+      );
 
       transaction = await app
         .connect(user1)
@@ -246,8 +256,16 @@ describe("Crowdfunding Platform", () => {
     it(`Check reverted ethers - ${tokens(0.5)} each`, async () => {
       expect(
         await hre.ethers.provider.getBalance(user2.getAddress()),
-      ).to.be.equal(pre_user2Money);
-      // expect(await hre.ethers.provider.getBalance(user3.getAddress())).to.be.equal(pre_user3Money);
+      ).to.be.lessThan(usersBalance.user2.pre);
+      expect(
+        await hre.ethers.provider.getBalance(user2.getAddress()),
+      ).to.be.greaterThan(usersBalance.user2.post);
+      expect(
+        await hre.ethers.provider.getBalance(user3.getAddress()),
+      ).to.be.lessThan(usersBalance.user3.pre);
+      expect(
+        await hre.ethers.provider.getBalance(user3.getAddress()),
+      ).to.be.greaterThan(usersBalance.user3.post);
     });
   });
 });
