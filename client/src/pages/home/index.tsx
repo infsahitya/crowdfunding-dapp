@@ -4,18 +4,10 @@ import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
 import { Subscribe } from "@/components/base/Subscribe";
 import CampaingCard from "@/components/base/CampaignCard";
-import { abi } from "../../../../server/artifacts/contracts/Crowdfunding.sol/Crowdfunding.json";
 
 export default function __home() {
   // eslint-disable-next-line
   //@ts-ignore
-  const provider = new ethers.BrowserProvider(window.ethereum);
-
-  const app = new ethers.Contract(
-    import.meta.env.VITE_CONTRACT_DEPLOYED_ADDRESS,
-    abi,
-    provider,
-  );
 
   useEffect(() => {
     (async () => {
