@@ -13,6 +13,7 @@ const NavLinkOpt = [
 ];
 
 const Navbar: React.FC = () => {
+  const resetAccount = useAuthStore((state) => state.reset);
   const account = useAuthStore((state) => state.getAccount());
   const setAccount = useAuthStore((state) => state.setAccount);
 
@@ -24,6 +25,13 @@ const Navbar: React.FC = () => {
       setAccount(accounts?.[0]);
     } catch (err) {
       console.warn("failed to connect..", err);
+    }
+  }
+
+  async function disconnectAccount() {
+    if (confirm("Are you sure you want disconnect your wallet?")) {
+      sdk?.disconnect();
+      return resetAccount();
     }
   }
 
@@ -85,7 +93,10 @@ const Navbar: React.FC = () => {
             <span>CONNECT WALLET</span>
           </Button>
         ) : (
-          <Button className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
+          <Button
+            onClick={() => disconnectAccount()}
+            className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2"
+          >
             <FaLink />
             <span>
               {account.slice(0, 6)}...

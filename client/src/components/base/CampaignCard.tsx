@@ -1,19 +1,19 @@
+import { parseETH } from "@/utils";
 import { Link } from "react-router-dom";
 import { IoIosTimer } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa6";
 import { Progress } from "@/components/ui/progress";
-import { parseETH } from "@/utils";
 
 const CampaingCard = ({ ...props }: CampaignProps) => {
   const {
     id,
     title,
     status,
+    endDateTime,
     description,
     raisedAmount,
     thumbnailURI,
     targetGoalAmount,
-    endDateTime,
   } = props;
 
   const donationProgress: number =

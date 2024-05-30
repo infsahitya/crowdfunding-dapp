@@ -1,35 +1,11 @@
-import { useEffect, useState } from "react";
-import useAppStore from "@/store/app.store";
 import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
 import { Subscribe } from "@/components/base/Subscribe";
 import CampaingCard from "@/components/base/CampaignCard";
+import { usePublicCampaigns } from "@/hooks";
 
 export default function __home() {
-  const app = useAppStore((state) => state.getApp());
-  const [allCampaigns, setAllCampaigns] = useState<CampaignProps[]>([]);
-
-  useEffect(() => {
-    app.getPublicCampaigns().then((result: CampaignProps[]) => {
-      setAllCampaigns(() =>
-        result.map((campaign) => ({
-          id: campaign.id,
-          title: campaign.title,
-          status: campaign.status,
-          donors: campaign.donors,
-          creator: campaign.creator,
-          endDateTime: campaign.endDateTime,
-          description: campaign.description,
-          thumbnailURI: campaign.thumbnailURI,
-          raisedAmount: campaign.raisedAmount,
-          targetGoalAmount: campaign.targetGoalAmount,
-          minimumGoalAmount: campaign.minimumGoalAmount,
-        })),
-      );
-    });
-  }, []); // eslint-disable-line
-
-  console.log(allCampaigns);
+  const { allCampaigns } = usePublicCampaigns();
 
   return (
     <div className=" text-gray-300 relative w-full">
