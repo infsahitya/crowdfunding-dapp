@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useAppStore from "@/store/app.store";
 import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
@@ -7,34 +7,26 @@ import CampaingCard from "@/components/base/CampaignCard";
 
 export default function __home() {
   const app = useAppStore((state) => state.getApp());
+  const [allCampaigns, setAllCampaigns] = useState<CampaignProps[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const data = await app.getUserCampaigns();
-
-      console.log(
-        "User Campaigns - ",
-        // eslint-disable-next-line
-        data.map((campaign: any) => {
-          return {
-            id: campaign.id,
-            name: campaign.title,
-          };
-        }),
+    app.getUserCampaigns().then((result: CampaignProps[]) => {
+      setAllCampaigns(() =>
+        result.map((campaign) => ({
+          id: campaign.id,
+          title: campaign.title,
+          status: campaign.status,
+          donors: campaign.donors,
+          creator: campaign.creator,
+          endDateTime: campaign.endDateTime,
+          description: campaign.description,
+          thumbnailURI: campaign.thumbnailURI,
+          raisedAmount: campaign.raisedAmount,
+          targetGoalAmount: campaign.targetGoalAmount,
+          minimumGoalAmount: campaign.minimumGoalAmount,
+        })),
       );
-
-      const data2 = await app.getPublicCampaigns();
-      console.log(
-        "Public Campaigns - ",
-        // eslint-disable-next-line
-        data2.map((campaign: any) => {
-          return {
-            id: campaign.id,
-            name: campaign.title,
-          };
-        }),
-      );
-    })();
+    });
   }, []); // eslint-disable-line
 
   return (
