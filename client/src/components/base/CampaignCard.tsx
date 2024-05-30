@@ -1,26 +1,36 @@
-import { Covid_Img } from "@/assets";
-import { FaEthereum } from "react-icons/fa6";
-import { IoIosTimer } from "react-icons/io";
-import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
+import { IoIosTimer } from "react-icons/io";
+import { FaEthereum } from "react-icons/fa6";
+import { Progress } from "@/components/ui/progress";
 
-const CampaingCard = () => {
+const CampaingCard = ({ ...props }: CampaignProps) => {
+  const {
+    id,
+    title,
+    status,
+    description,
+    raisedAmount,
+    thumbnailURI,
+    targetGoalAmount,
+    endDateTime,
+  } = props;
+
   return (
     <div className="relative mx-auto w-full">
       <Link
-        to={`campagin/${1}`}
+        to={`campagin/${id}`}
         className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full"
       >
         <div className="shadow p-4 rounded-lg bg-[#343A40] text-gray-300">
           <div className="flex justify-center relative rounded-lg overflow-hidden h-52">
             <div className="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
               {/* <div className="absolute inset-0 bg-black opacity-10"> */}
-              <img src={Covid_Img} alt="campaign img" />
+              <img src={thumbnailURI} alt={title} />
               {/* </div> */}
             </div>
 
             <span className="absolute top-0 left-0 inline-flex mt-3 ml-3 px-3 py-2 rounded-lg z-10 bg-red-500 text-sm font-medium text-white select-none">
-              Active
+              {status}
             </span>
           </div>
 
@@ -29,13 +39,13 @@ const CampaingCard = () => {
               className="font-medium text-base md:text-xl text-gray-300 line-clamp-2"
               title="New York"
             >
-              Distribution of Covid Vaccine
+              {title}
             </h2>
             <p
               className="mt-2 text-base text-gray-300 line-clamp-3"
               title="Take part in giving reliefs to Covid-19 victims"
             >
-              Take part in giving reliefs to Covid-19 victims
+              {description}
             </p>
           </div>
 
@@ -48,11 +58,11 @@ const CampaingCard = () => {
             </p>
             <p className="inline-flex flex-row items-center text-gray-300">
               <FaEthereum className=" text-primary" />
-              <span className="">1,386</span>
+              <span className="">{Number(raisedAmount).toString()}</span>
             </p>
             <p className="inline-flex flex-row items-center text-gray-300 ml-8">
               <FaEthereum className=" text-primary" />
-              <span className="">1.98</span>
+              <span className="">{Number(targetGoalAmount).toString()}</span>
             </p>
           </div>
 
@@ -71,7 +81,10 @@ const CampaingCard = () => {
 
             <div className="flex justify-end">
               <p className="inline-block font-semibold text-primary whitespace-nowrap leading-tight rounded-xl text-lg">
-                33%
+                {(
+                  (Number(raisedAmount) / Number(targetGoalAmount)) *
+                  100
+                ).toString()}
               </p>
             </div>
           </div>

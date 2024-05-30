@@ -10,7 +10,7 @@ export default function __home() {
   const [allCampaigns, setAllCampaigns] = useState<CampaignProps[]>([]);
 
   useEffect(() => {
-    app.getUserCampaigns().then((result: CampaignProps[]) => {
+    app.getPublicCampaigns().then((result: CampaignProps[]) => {
       setAllCampaigns(() =>
         result.map((campaign) => ({
           id: campaign.id,
@@ -29,6 +29,8 @@ export default function __home() {
     });
   }, []); // eslint-disable-line
 
+  console.log(allCampaigns);
+
   return (
     <div className=" text-gray-300 relative w-full">
       <HeroSection />
@@ -41,12 +43,9 @@ export default function __home() {
           </h1>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 xl:gap-12 w-full px-[4rem] xl:px-[9rem]">
-          <CampaingCard />
-          <CampaingCard />
-          <CampaingCard />
-          <CampaingCard />
-          <CampaingCard />
-          <CampaingCard />
+          {allCampaigns.map((campaign, index) => (
+            <CampaingCard key={index} {...campaign} />
+          ))}
         </div>
 
         <Subscribe />
