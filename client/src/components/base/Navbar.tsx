@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { FaLink } from "react-icons/fa";
 import { MdCreate } from "react-icons/md";
+import useAuthStore from "@/store/auth.store";
+import { useSDK } from "@metamask/sdk-react";
 
 const NavLinkOpt = [
   { name: "Home", path: "/" },
@@ -11,6 +13,24 @@ const NavLinkOpt = [
 ];
 
 const Navbar: React.FC = () => {
+  const getAccount = useAuthStore((state) => state.getAccount());
+  const setAccount = useAuthStore((state) => state.setAccount);
+
+  const { sdk, connected, connecting, provider, chainId } = useSDK();
+
+  console.log("Connected - ", connected);
+  console.log("Connecting - ", connecting);
+  console.log("Chain ID - ", chainId);
+
+  async function connectToAccount() {
+    try {
+      const accounts = await sdk?.connect();
+      setAccount(accounts?.[0]);
+    } catch (err) {
+      console.warn("failed to connect..", err);
+    }
+  }
+
   return (
     <div>
       <nav className="relative px-6 py-5 flex justify-between items-center bg-[#343A40] shadow-lg shadow-background">
@@ -60,7 +80,10 @@ const Navbar: React.FC = () => {
           <MdCreate />
           <span>CREATE CAMPAIGN</span>
         </NavLink>
-        <Button className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
+        <Button
+          onClick={() => connectToAccount()}
+          className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2"
+        >
           <FaLink />
           <span>CONNECT WALLET</span>
         </Button>
