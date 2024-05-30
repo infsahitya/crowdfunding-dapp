@@ -16,12 +16,7 @@ const Navbar: React.FC = () => {
   const account = useAuthStore((state) => state.getAccount());
   const setAccount = useAuthStore((state) => state.setAccount);
 
-  const { sdk, connected, connecting, chainId } = useSDK();
-
-  console.log("Connected - ", connected);
-  console.log("Connecting - ", connecting);
-  console.log("Chain ID - ", chainId);
-  console.log("Get Account - ", account);
+  const { sdk, chainId } = useSDK();
 
   async function connectToAccount() {
     try {
@@ -81,13 +76,23 @@ const Navbar: React.FC = () => {
           <MdCreate />
           <span>CREATE CAMPAIGN</span>
         </NavLink>
-        <Button
-          onClick={() => connectToAccount()}
-          className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2"
-        >
-          <FaLink />
-          <span>CONNECT WALLET</span>
-        </Button>
+        {!account ? (
+          <Button
+            onClick={() => connectToAccount()}
+            className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2"
+          >
+            <FaLink />
+            <span>CONNECT WALLET</span>
+          </Button>
+        ) : (
+          <Button className=" py-2 px-6 bg-primary hover:bg-primaryDark text-sm text-black font-bold rounded-lg transition duration-200 flex justify-center items-center flex-row gap-2">
+            <FaLink />
+            <span>
+              {account.slice(0, 6)}...
+              {account.slice(account.length - 3, account.length)}
+            </span>
+          </Button>
+        )}
       </nav>
     </div>
   );
