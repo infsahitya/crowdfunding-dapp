@@ -1,3 +1,4 @@
+import { Boy } from "@/assets";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
 
 function TeamMember({
@@ -6,7 +7,7 @@ function TeamMember({
   imageUrl,
 }: {
   name: string;
-  title: string;
+  title?: string;
   imageUrl: string;
 }) {
   return (
@@ -79,8 +80,7 @@ function Team() {
 
             {/* Description */}
             <p className="text-gray-300 text-lg font-light">
-              With over 100 years of combined experience, we've got a
-              well-seasoned team at the helm.
+              Our dedicated team of creative professionals collaborates to deliver innovative solutions and exceptional results.
             </p>
           </div>
         </div>
@@ -89,29 +89,30 @@ function Team() {
         <div className="flex flex-wrap">
           {/* Member #1 */}
           <TeamMember
-            name="Tranter Jaskulski"
-            title="Founder & Specialist"
-            imageUrl="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?fit=clamp&w=400&h=400&q=80"
+            name="Sahitya Pandey"
+            // title="Founder & Specialist"
+            // imageUrl="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?fit=clamp&w=400&h=400&q=80"
+            imageUrl={Boy}
           />
 
           {/* Member #2 */}
           <TeamMember
-            name="Denice Jagna"
-            title="Tired & M. Specialist"
+            name="Shagun Dubey"
+            // title="Tired & M. Specialist"
             imageUrl="https://images.unsplash.com/photo-1634896941598-b6b500a502a7?fit=clamp&w=400&h=400&q=80"
           />
 
           {/* Member #3 */}
           <TeamMember
-            name="Kenji Milton"
-            title="Team Member"
+            name="Saurbh Mishra"
+            // title="Team Member"
             imageUrl="https://images.unsplash.com/photo-1634193295627-1cdddf751ebf?fit=clamp&w=400&h=400&q=80"
           />
 
           {/* Member #4 */}
           <TeamMember
-            name="Doesn't matter"
-            title="Will be fired"
+            name="Ritika Tripathi"
+            // title="Will be fired"
             imageUrl="https://images.unsplash.com/photo-1635003913011-95971abba560?fit=clamp&w=400&h=400&q=80"
           />
         </div>

@@ -22,16 +22,13 @@ export default function __aboutUs() {
               Working with us is a pleasure
             </h3>
             <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-              Don't let your users guess by attaching tooltips and popovers to
-              any element. Just make sure you enable them first via JavaScript.
+            Welcome to CrowdFunding Platform, your reliable decentralized crowdfunding platform. Our mission is to transform charitable and non-profit donations with transparency, security, and efficiency.
             </p>
             <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
-              The kit comes with three pre-built pages to help you get started
-              faster. You can change the text and images and you're good to go.
-              Just make sure you enable them first via JavaScript.
+              Using blockchain technology, we ensure every transaction is secure, traceable, and accountable. This innovative approach provides enhanced trust and accountability, making charitable giving more effective and transparent.
             </p>
             <a href="#" className="font-bold text-blueGray-700 mt-8">
-              Check Notus JS!
+              
             </a>
           </div>
           <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -57,9 +54,7 @@ export default function __aboutUs() {
                   Top Notch Services
                 </h4>
                 <p className="text-md font-light mt-2 text-white">
-                  The Arctic Ocean freezes every winter and much of the sea-ice
-                  then thaws every summer, and that process will continue
-                  whatever happens.
+                  CrowdFundTrust leverages Ethereum 2.0 and Solana with smart contracts to efficiently handle donations, reduce administrative costs, and boost donor confidence.
                 </p>
               </blockquote>
             </div>
