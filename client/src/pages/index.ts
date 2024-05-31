@@ -17,5 +17,5 @@ export {
   __contactUs as ContactUs,
   __aboutUs as AboutUs,
   __myCampaigns as MyCampaigns,
-  __allCampaigns as AllCampaigns
+  __allCampaigns as AllCampaigns,
 };

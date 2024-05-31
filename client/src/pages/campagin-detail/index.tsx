@@ -13,9 +13,9 @@ import useCampaignDetails from "@/hooks/useCampaignDetails";
 export default function __campaignDetail() {
   const { campaignId } = useParams();
   const { campaignDetails } = useCampaignDetails(campaignId!);
-  
-  const app = useAppStore(state => state.getApp());
-  const provider = useAppStore(state => state.getProvider());
+
+  const app = useAppStore((state) => state.getApp());
+  const provider = useAppStore((state) => state.getProvider());
 
   const {
     id,
@@ -40,18 +40,18 @@ export default function __campaignDetail() {
   //   await transaction.wait();
   // }
 
-  async function endCampaign () {
+  async function endCampaign() {
     const signer = await provider.getSigner();
     const transaction = app.connect(signer).endCampaignAndWithdrawFunds(id);
     await transaction.wait();
   }
-  
-  async function abortCampaign() { 
+
+  async function abortCampaign() {
     const signer = await provider.getSigner();
     const transaction = app.connect(signer).abortCampaignAndRefundDonors(id);
     await transaction.wait();
   }
-  
+
   return (
     <div className=" w-full relative px-10 py-8">
       <h1 className=" text-xl font-medium text-white mb-4">About Campaign</h1>
@@ -156,7 +156,10 @@ export default function __campaignDetail() {
                 Please be certain.
               </p>
             </div>
-            <button onClick={() => abortCampaign()} className=" uppercase bg-red-600 rounded-lg shadow-md text-white p-6 font-medium">
+            <button
+              onClick={() => abortCampaign()}
+              className=" uppercase bg-red-600 rounded-lg shadow-md text-white p-6 font-medium"
+            >
               Abort <br />
               Campaign
             </button>
@@ -213,7 +216,10 @@ export default function __campaignDetail() {
                 </span>
               </div>
 
-              <button onClick={() => endCampaign()} className=" w-full p-3 rounded-md bg-red-600 uppercase text-white font-medium shadow-md">
+              <button
+                onClick={() => endCampaign()}
+                className=" w-full p-3 rounded-md bg-red-600 uppercase text-white font-medium shadow-md"
+              >
                 End Campaign & Withdraw
               </button>
             </div>

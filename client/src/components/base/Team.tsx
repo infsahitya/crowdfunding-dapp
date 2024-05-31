@@ -80,7 +80,8 @@ function Team() {
 
             {/* Description */}
             <p className="text-gray-300 text-lg font-light">
-              Our dedicated team of creative professionals collaborates to deliver innovative solutions and exceptional results.
+              Our dedicated team of creative professionals collaborates to
+              deliver innovative solutions and exceptional results.
             </p>
           </div>
         </div>

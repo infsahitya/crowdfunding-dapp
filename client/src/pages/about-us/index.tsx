@@ -22,14 +22,17 @@ export default function __aboutUs() {
               Working with us is a pleasure
             </h3>
             <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
-            Welcome to CrowdFunding Platform, your reliable decentralized crowdfunding platform. Our mission is to transform charitable and non-profit donations with transparency, security, and efficiency.
+              Welcome to CrowdFunding Platform, your reliable decentralized
+              crowdfunding platform. Our mission is to transform charitable and
+              non-profit donations with transparency, security, and efficiency.
             </p>
             <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
-              Using blockchain technology, we ensure every transaction is secure, traceable, and accountable. This innovative approach provides enhanced trust and accountability, making charitable giving more effective and transparent.
+              Using blockchain technology, we ensure every transaction is
+              secure, traceable, and accountable. This innovative approach
+              provides enhanced trust and accountability, making charitable
+              giving more effective and transparent.
             </p>
-            <a href="#" className="font-bold text-blueGray-700 mt-8">
-              
-            </a>
+            <a href="#" className="font-bold text-blueGray-700 mt-8"></a>
           </div>
           <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-2 shadow-lg rounded-lg bg-primary">
@@ -54,7 +57,9 @@ export default function __aboutUs() {
                   Top Notch Services
                 </h4>
                 <p className="text-md font-light mt-2 text-white">
-                  CrowdFundTrust leverages Ethereum 2.0 and Solana with smart contracts to efficiently handle donations, reduce administrative costs, and boost donor confidence.
+                  CrowdFundTrust leverages Ethereum 2.0 and Solana with smart
+                  contracts to efficiently handle donations, reduce
+                  administrative costs, and boost donor confidence.
                 </p>
               </blockquote>
             </div>
