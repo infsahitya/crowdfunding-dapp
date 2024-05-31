@@ -1,11 +1,13 @@
 import {
   AboutUs,
+  AllCampaigns,
   CampaignDetail,
   ContactUs,
   CreateCampaign,
   ErrorPage,
   Home,
   MainPage,
+  MyCampaigns,
 } from "@/pages";
 import { RouteObject } from "react-router-dom";
 
@@ -34,6 +36,14 @@ export const PublicRoutes: RouteObject[] = [
       {
         path: "about-us",
         element: <AboutUs />,
+      },
+      {
+        path: "my-campaigns",
+        element: <MyCampaigns />,
+      },
+      {
+        path: "all-campaigns",
+        element: <AllCampaigns />,
       },
     ],
   },
