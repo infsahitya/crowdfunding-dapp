@@ -22,7 +22,7 @@ const CampaingCard = ({ ...props }: CampaignProps) => {
   return (
     <div className="relative mx-auto w-full">
       <Link
-        to={`campagin/${id}`}
+        to={`/campagin/${id}`}
         className="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full"
       >
         <div className="shadow p-4 rounded-lg bg-[#343A40] text-gray-300">
