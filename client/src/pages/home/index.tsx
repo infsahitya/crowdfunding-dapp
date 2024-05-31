@@ -1,8 +1,8 @@
+import { usePublicCampaigns } from "@/hooks";
 import Footer from "@/components/base/Footer";
 import HeroSection from "@/components/base/HeroSection";
 import { Subscribe } from "@/components/base/Subscribe";
 import CampaingCard from "@/components/base/CampaignCard";
-import { usePublicCampaigns } from "@/hooks";
 
 export default function __home() {
   const { allCampaigns } = usePublicCampaigns();
