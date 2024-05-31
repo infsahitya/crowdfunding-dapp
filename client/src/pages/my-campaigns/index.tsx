@@ -8,7 +8,7 @@ export default function __myCampaigns() {
     <div className="relative py-10">
       <div className="relative w-full flex justify-center items-center pt-8 pb-20">
         <h1 className=" text-4xl text-center font-semibold">
-          My
+          All My
           <br />
           <span className=" text-primary">Campaign</span>
         </h1>
