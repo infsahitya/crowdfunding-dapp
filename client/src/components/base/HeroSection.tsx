@@ -27,7 +27,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="px-8 py-3 text-lg font-semibold border rounded dark:border-gray-800 hover:border-primary hover:text-primary"
             >
-              Create Campaing
+              Create Campaign
             </Link>
           </div>
         </div>
