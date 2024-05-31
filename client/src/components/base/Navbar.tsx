@@ -8,6 +8,8 @@ import { useSDK } from "@metamask/sdk-react";
 
 const NavLinkOpt = [
   { name: "Home", path: "/" },
+  { name: "All Campaigns", path: "all-campagins" },
+  { name: "My Campaigns", path: "my-campagins" },
   { name: "About Us", path: "about-us" },
   { name: "Contact", path: "contact-us" },
 ];
