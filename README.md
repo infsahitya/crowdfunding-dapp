@@ -9,7 +9,7 @@ This is a decentralized application specifically made to cater the needs of the 
 This platform was made to target the transparency and auditing related issues in charity donation fo greater good.
 
 
-## Features
+## ✨ Features
 
 - Effective Donations
 - Quick Transactions
@@ -18,19 +18,31 @@ This platform was made to target the transparency and auditing related issues in
 - Public Visibility
 
 
-## Contributors
+## 🧑🏻‍🔬 Contributors
 
 - [Shagun Dubey](https://github.com/shagunDubey1)
 - [Saurabh Mishra](https://github.com/itstiesto)
 - [Sahitya Pandey](https://github.com/infsahitya)
 
 
-## Demo
+## 📸 Screenshots
 
-Insert gif or link to demo
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%202024-05-30%20061829.png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%20(80).png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%20(81).png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%20(82).png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%20(83).png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%20(86).png)
+
+![App Screenshot](https://raw.githubusercontent.com/infsahitya/crowdfunding-dapp/main/client/src/assets/Screenshot%202024-05-31%20013058.png)
 
 
-## Installation
+## ⚙️ Installation
 
 Install crowdfunding-dapp with npm
 
@@ -45,7 +57,7 @@ Install crowdfunding-dapp with npm
   npm install
 ```
     
-## Run Locally
+## 🛠️ Run Locally
 
 Clone the project
 
@@ -102,7 +114,7 @@ Start client in development mode
 ```
 
 
-## Running Tests
+## 🧪 Running Tests
 
 To run tests, run the following command
 
@@ -114,7 +126,7 @@ To run tests, run the following command
 ```
 
 
-## Deployment
+## 🏗️ Deployment
 
 To deploy this project run
 
@@ -125,8 +137,9 @@ To deploy this project run
 ```
 
 
-## Tech Stack
+## 🔦 Tech Stack
 
 **Client:** React, NextUI, Vite, TypeScript, Tailwind, Metamask SDK
 
 **Server:** Node, Solidity, Ethereum, Metamask SDK
+
