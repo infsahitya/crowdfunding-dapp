@@ -139,7 +139,7 @@ To deploy this project run
 
 ## 🔦 Tech Stack
 
-**Client:** React, NextUI, Vite, TypeScript, Tailwind, Metamask SDK
+**Client:** React, NextUI, Vite, TypeScript, Tailwind, Metamask SDK, Ethers.js
 
-**Server:** Node, Solidity, Ethereum, Metamask SDK
+**Server:** Node, Solidity, Ethereum, Metamask SDK, Chai, Ethers.js
 
